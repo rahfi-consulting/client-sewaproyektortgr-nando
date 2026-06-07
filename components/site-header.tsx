@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -13,8 +14,23 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-zinc-200 bg-white/95 backdrop-blur">
       <div className="section-shell flex h-20 items-center justify-between gap-4">
-        <Link href="/" className="text-sm font-bold tracking-[0.24em] text-zinc-950 sm:text-base">
-          {SITE_NAME}
+        <Link href="/" className="flex items-center gap-3">
+          <Image
+            src="/dark-logo.png"
+            alt={SITE_NAME}
+            width={120}
+            height={50}
+            className="h-10 w-auto"
+            priority
+          />
+          <span className="min-w-0 flex flex-col leading-none">
+            <span className="text-xs font-semibold uppercase tracking-[0.22em] text-zinc-950 sm:text-sm sm:tracking-[0.24em]">
+              {SITE_NAME}
+            </span>
+            <span className="hidden text-[0.7rem] font-medium tracking-[0.18em] text-zinc-500 sm:block">
+              Projector Rental
+            </span>
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

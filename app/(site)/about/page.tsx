@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FaInstagram, FaTiktok } from "react-icons/fa";
 import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_PHONE, SITE_IMAGES, SITE_NAME } from "@/lib/site-config";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 
@@ -63,6 +64,32 @@ export default function AboutPage() {
           >
             Hubungi via WhatsApp
           </a>
+
+          <div className="space-y-3">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-zinc-500">
+              Follow Us
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-4 py-2 text-sm font-medium text-zinc-700 hover:border-zinc-950 hover:text-zinc-950"
+              >
+                <FaInstagram className="h-6 w-6" />
+                <span>Instagram</span>
+              </a>
+              <a
+                href="https://tiktok.com"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-4 py-2 text-sm font-medium text-zinc-700 hover:border-zinc-950 hover:text-zinc-950"
+              >
+                <FaTiktok className="h-6 w-6" />
+                <span>TikTok</span>
+              </a>
+            </div>
+          </div>
         </div>
 
         <div className="overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100">

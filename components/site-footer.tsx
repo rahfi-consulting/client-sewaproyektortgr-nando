@@ -1,4 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
+import { FaInstagram, FaTiktok } from "react-icons/fa";
 import {
   CONTACT_ADDRESS,
   CONTACT_EMAIL,
@@ -13,8 +15,44 @@ export function SiteFooter() {
     <footer className="bg-black py-16 text-white">
       <div className="section-shell grid gap-10 md:grid-cols-3">
         <div className="space-y-4">
-          <p className="text-sm font-bold tracking-[0.24em] text-white">{SITE_NAME}</p>
+          <Link href="/" className="flex items-center gap-3">
+            <Image
+              src="/light-logo.png"
+              alt={SITE_NAME}
+              width={120}
+              height={50}
+              className="h-10 w-auto"
+            />
+            <span className="min-w-0 leading-none">
+              <span className="block text-sm font-semibold uppercase tracking-[0.24em] text-white">
+                {SITE_NAME}
+              </span>
+              <span className="mt-1 block text-[0.7rem] font-medium tracking-[0.18em] text-zinc-400">
+                Projector Rental
+              </span>
+            </span>
+          </Link>
           <p className="max-w-sm text-sm leading-7 text-zinc-300">{SITE_DESCRIPTION}</p>
+          <div className="flex gap-3 pt-2">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-zinc-200 hover:border-white/25 hover:bg-white/10 hover:text-white"
+            >
+              <FaInstagram className="h-5 w-5" />
+              <span className="text-sm font-medium">Instagram</span>
+            </a>
+            <a
+              href="https://tiktok.com"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-zinc-200 hover:border-white/25 hover:bg-white/10 hover:text-white"
+            >
+              <FaTiktok className="h-5 w-5" />
+              <span className="text-sm font-medium">TikTok</span>
+            </a>
+          </div>
         </div>
 
         <div className="space-y-4">
