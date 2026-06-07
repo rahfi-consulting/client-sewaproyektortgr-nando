@@ -3,7 +3,6 @@ import Link from "next/link";
 import { FaInstagram, FaTiktok } from "react-icons/fa";
 import {
   CONTACT_ADDRESS,
-  CONTACT_EMAIL,
   CONTACT_PHONE,
   NAV_LINKS,
   SITE_DESCRIPTION,
@@ -33,26 +32,7 @@ export function SiteFooter() {
             </span>
           </Link>
           <p className="max-w-sm text-sm leading-7 text-zinc-300">{SITE_DESCRIPTION}</p>
-          <div className="flex gap-3 pt-2">
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-zinc-200 hover:border-white/25 hover:bg-white/10 hover:text-white"
-            >
-              <FaInstagram className="h-5 w-5" />
-              <span className="text-sm font-medium">Instagram</span>
-            </a>
-            <a
-              href="https://tiktok.com"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-zinc-200 hover:border-white/25 hover:bg-white/10 hover:text-white"
-            >
-              <FaTiktok className="h-5 w-5" />
-              <span className="text-sm font-medium">TikTok</span>
-            </a>
-          </div>
+
         </div>
 
         <div className="space-y-2">
@@ -70,18 +50,37 @@ export function SiteFooter() {
 
         <div className="space-y-2">
           <p className="text-sm font-semibold tracking-[0.1em] text-zinc-400">
-            Quick Links
+            Contact Information
           </p>
           <div className="space-y-3 text-sm leading-7 text-zinc-300">
-            <p>{CONTACT_EMAIL}</p>
-            <p>{CONTACT_PHONE}</p>
-            <p>{CONTACT_ADDRESS}</p>
+            <p>WhatsApp Number: {CONTACT_PHONE}</p>
+            <p>{CONTACT_ADDRESS}, Indonesia</p>
+            <div className="flex gap-3 pt-2">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-zinc-200 hover:border-white/25 hover:bg-white/10 hover:text-white"
+              >
+                <FaInstagram className="h-5 w-5" />
+                <span className="text-sm font-medium">Instagram</span>
+              </a>
+              <a
+                href="https://tiktok.com"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-zinc-200 hover:border-white/25 hover:bg-white/10 hover:text-white"
+              >
+                <FaTiktok className="h-5 w-5" />
+                <span className="text-sm font-medium">TikTok</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
       <div className="section-shell border-t border-zinc-800 mt-10 pt-10">
         <p className="text-center text-sm text-zinc-400">
-          © 2026 <b>{SITE_NAME}</b> | All rights reserved.
+          © 2026 <b>{SITE_NAME}</b> | All Rights Reserved.
         </p>
       </div>
     </footer>

@@ -1,71 +1,164 @@
-create extension if not exists "pgcrypto";
+CREATE EXTENSION if NOT EXISTS "pgcrypto";
 
-create table if not exists public.products (
-  id uuid primary key default gen_random_uuid(),
-  name text not null,
-  description text,
-  price text not null,
-  image_url text,
-  status boolean not null default true,
-  category text not null default 'General',
-  featured boolean not null default false,
-  sort_order integer not null default 0,
-  created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
+CREATE TABLE IF NOT EXISTS public.products (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid (),
+  name TEXT NOT NULL,
+  description TEXT,
+  price TEXT NOT NULL,
+  image_url TEXT,
+  status BOOLEAN NOT NULL DEFAULT TRUE,
+  category TEXT NOT NULL DEFAULT 'General',
+  featured BOOLEAN NOT NULL DEFAULT FALSE,
+  sort_order INTEGER NOT NULL DEFAULT 0,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
-create or replace function public.set_updated_at()
-returns trigger
-language plpgsql
-as $$
+CREATE TABLE IF NOT EXISTS public.admin_users (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid (),
+  auth_user_id uuid UNIQUE REFERENCES auth.users (id) ON DELETE SET NULL,
+  email TEXT NOT NULL,
+  role TEXT NOT NULL DEFAULT 'admin',
+  is_active BOOLEAN NOT NULL DEFAULT TRUE,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  CONSTRAINT admin_users_role_check CHECK (role IN ('admin'))
+);
+
+CREATE UNIQUE INDEX if NOT EXISTS admin_users_email_lower_key ON public.admin_users (lower(email));
+
+CREATE OR REPLACE FUNCTION public.set_updated_at () returns trigger language plpgsql AS $$
 begin
   new.updated_at = now();
   return new;
 end;
 $$;
 
-drop trigger if exists products_set_updated_at on public.products;
-create trigger products_set_updated_at
-before update on public.products
-for each row
-execute function public.set_updated_at();
+CREATE OR REPLACE FUNCTION public.normalize_admin_user_email () returns trigger language plpgsql AS $$
+begin
+  new.email = lower(trim(new.email));
+  return new;
+end;
+$$;
 
-alter table public.products enable row level security;
+CREATE OR REPLACE FUNCTION public.sync_admin_user_auth_id () returns trigger language plpgsql security definer
+SET
+  search_path = public,
+  auth AS $$
+begin
+  if new.email is null then
+    return new;
+  end if;
 
-drop policy if exists "Public can read available products" on public.products;
-create policy "Public can read available products"
-on public.products
-for select
-to anon, authenticated
-using (status = true);
+  update public.admin_users
+  set
+    auth_user_id = new.id,
+    email = lower(new.email),
+    updated_at = now()
+  where auth_user_id = new.id or email = lower(new.email);
 
-drop policy if exists "Authenticated users can manage all products" on public.products;
-create policy "Authenticated users can manage all products"
-on public.products
-for all
-to authenticated
-using (true)
-with check (true);
+  return new;
+end;
+$$;
 
-insert into public.products (
-  name,
-  description,
-  price,
-  image_url,
-  status,
-  category,
-  featured,
-  sort_order
+DROP TRIGGER if EXISTS products_set_updated_at ON public.products;
+
+CREATE TRIGGER products_set_updated_at before
+UPDATE ON public.products FOR each ROW
+EXECUTE function public.set_updated_at ();
+
+DROP TRIGGER if EXISTS admin_users_normalize_email ON public.admin_users;
+
+CREATE TRIGGER admin_users_normalize_email before insert
+OR
+UPDATE ON public.admin_users FOR each ROW
+EXECUTE function public.normalize_admin_user_email ();
+
+DROP TRIGGER if EXISTS admin_users_set_updated_at ON public.admin_users;
+
+CREATE TRIGGER admin_users_set_updated_at before
+UPDATE ON public.admin_users FOR each ROW
+EXECUTE function public.set_updated_at ();
+
+DROP TRIGGER if EXISTS sync_admin_user_auth_id ON auth.users;
+
+CREATE TRIGGER sync_admin_user_auth_id
+AFTER insert
+OR
+UPDATE of email ON auth.users FOR each ROW
+EXECUTE function public.sync_admin_user_auth_id ();
+
+ALTER TABLE public.products enable ROW level security;
+
+ALTER TABLE public.admin_users enable ROW level security;
+
+DROP POLICY if EXISTS "Admins can read own access record" ON public.admin_users;
+
+CREATE POLICY "Admins can read own access record" ON public.admin_users FOR
+SELECT
+  TO authenticated USING (
+    is_active = TRUE
+    AND email = lower(coalesce(auth.jwt () ->> 'email', ''))
+  );
+
+DROP POLICY if EXISTS "Public can read available products" ON public.products;
+
+CREATE POLICY "Public can read available products" ON public.products FOR
+SELECT
+  TO anon,
+  authenticated USING (status = TRUE);
+
+DROP POLICY if EXISTS "Authenticated users can manage all products" ON public.products;
+
+DROP POLICY if EXISTS "Authorized admins can manage all products" ON public.products;
+
+CREATE POLICY "Authorized admins can manage all products" ON public.products FOR ALL TO authenticated USING (
+  EXISTS (
+    SELECT
+      1
+    FROM
+      public.admin_users admin_user
+    WHERE
+      admin_user.is_active = TRUE
+      AND admin_user.email = lower(coalesce(auth.jwt () ->> 'email', ''))
+  )
 )
-values
+WITH
+  CHECK (
+    EXISTS (
+      SELECT
+        1
+      FROM
+        public.admin_users admin_user
+      WHERE
+        admin_user.is_active = TRUE
+        AND admin_user.email = lower(coalesce(auth.jwt () ->> 'email', ''))
+    )
+  );
+
+-- Add allowed admin emails manually after running this schema.
+-- Example:
+-- insert into public.admin_users (email) values ('admin@example.com');
+INSERT INTO
+  public.products (
+    name,
+    description,
+    price,
+    image_url,
+    status,
+    category,
+    featured,
+    sort_order
+  )
+VALUES
   (
     'Proyektor Panasonic 5500 Lumens - Nobar',
     'Paket proyektor untuk nobar dan presentasi singkat selama 3 jam.',
     'Rp 350.000 / 3 jam',
     'https://images.pexels.com/photos/31726719/pexels-photo-31726719.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    true,
+    TRUE,
     'Proyektor',
-    true,
+    TRUE,
     1
   ),
   (
@@ -73,9 +166,9 @@ values
     'Pilihan sewa proyektor dengan durasi menengah untuk rapat, seminar, dan kelas.',
     'Rp 650.000 / 6 jam',
     'https://images.pexels.com/photos/31726719/pexels-photo-31726719.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    true,
+    TRUE,
     'Proyektor',
-    true,
+    TRUE,
     2
   ),
   (
@@ -83,9 +176,9 @@ values
     'Paket sewa proyektor harian untuk event dan kebutuhan produksi lebih panjang.',
     'Rp 800.000 / 12 jam',
     'https://images.pexels.com/photos/31726719/pexels-photo-31726719.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    true,
+    TRUE,
     'Proyektor',
-    true,
+    TRUE,
     3
   ),
   (
@@ -93,9 +186,9 @@ values
     'Durasi penuh 24 jam untuk kebutuhan event satu hari penuh.',
     'Rp 950.000 / 24 jam',
     'https://images.pexels.com/photos/31726719/pexels-photo-31726719.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    true,
+    TRUE,
     'Proyektor',
-    true,
+    TRUE,
     4
   ),
   (
@@ -103,9 +196,9 @@ values
     'Layar proyektor dengan stand untuk kebutuhan presentasi dan gathering kecil.',
     'Rp 350.000 / 6 jam',
     'https://images.pexels.com/photos/5955016/pexels-photo-5955016.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    true,
+    TRUE,
     'Layar',
-    true,
+    TRUE,
     5
   ),
   (
@@ -113,9 +206,9 @@ values
     'Layar ukuran lebih besar dengan stand untuk panggung dan ruangan luas.',
     'Rp 650.000 / 6 jam',
     'https://images.pexels.com/photos/5955016/pexels-photo-5955016.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    true,
+    TRUE,
     'Layar',
-    true,
+    TRUE,
     6
   ),
   (
@@ -123,9 +216,9 @@ values
     'Layar gantung tanpa stand untuk pemasangan pada struktur venue.',
     'Rp 200.000',
     'https://images.pexels.com/photos/5955016/pexels-photo-5955016.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    true,
+    TRUE,
     'Layar',
-    false,
+    FALSE,
     7
   ),
   (
@@ -133,9 +226,9 @@ values
     'Layar gantung ukuran besar untuk area tontonan dan acara publik.',
     'Rp 300.000',
     'https://images.pexels.com/photos/5955016/pexels-photo-5955016.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    true,
+    TRUE,
     'Layar',
-    false,
+    FALSE,
     8
   ),
   (
@@ -143,9 +236,9 @@ values
     'Speaker ringkas untuk ruangan kecil dan presentasi internal.',
     'Rp 150.000 / 6 jam',
     'https://images.pexels.com/photos/1034651/pexels-photo-1034651.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    true,
+    TRUE,
     'Audio',
-    false,
+    FALSE,
     9
   ),
   (
@@ -153,9 +246,9 @@ values
     'Paket audio praktis untuk MC, rapat, dan acara komunitas.',
     'Rp 450.000 / 6 jam',
     'https://images.pexels.com/photos/1034651/pexels-photo-1034651.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    true,
+    TRUE,
     'Audio',
-    false,
+    FALSE,
     10
   ),
   (
@@ -163,9 +256,9 @@ values
     'Paket audio untuk area lebih luas dengan distribusi suara lebih merata.',
     'Rp 800.000 / 6 jam',
     'https://images.pexels.com/photos/1034651/pexels-photo-1034651.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    true,
+    TRUE,
     'Audio',
-    false,
+    FALSE,
     11
   ),
   (
@@ -173,9 +266,9 @@ values
     'Tambahan stand untuk kebutuhan setup proyektor yang lebih stabil.',
     'Rp 100.000',
     'https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    true,
+    TRUE,
     'Perlengkapan',
-    false,
+    FALSE,
     12
   ),
   (
@@ -183,9 +276,9 @@ values
     'Perangkat bantu presentasi untuk pengarah materi di layar.',
     'Rp 100.000',
     'https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    true,
+    TRUE,
     'Perlengkapan',
-    false,
+    FALSE,
     13
   ),
   (
@@ -193,9 +286,9 @@ values
     'Konektor nirkabel untuk presentasi langsung dari perangkat Type-C.',
     'Rp 150.000',
     'https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    true,
+    TRUE,
     'Perlengkapan',
-    false,
+    FALSE,
     14
   ),
   (
@@ -203,9 +296,9 @@ values
     'Aksesori wireless untuk koneksi layar yang lebih fleksibel.',
     'Rp 250.000',
     'https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    true,
+    TRUE,
     'Perlengkapan',
-    false,
+    FALSE,
     15
   ),
   (
@@ -213,9 +306,9 @@ values
     'Tambahan distribusi daya untuk venue dengan titik listrik terbatas.',
     'Rp 50.000 / 6 jam',
     'https://images.pexels.com/photos/4219862/pexels-photo-4219862.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    true,
+    TRUE,
     'Kabel',
-    false,
+    FALSE,
     16
   ),
   (
@@ -223,9 +316,9 @@ values
     'Ekstensi kabel untuk setup panggung dan area sedang.',
     'Rp 75.000 / 6 jam',
     'https://images.pexels.com/photos/4219862/pexels-photo-4219862.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    true,
+    TRUE,
     'Kabel',
-    false,
+    FALSE,
     17
   ),
   (
@@ -233,9 +326,9 @@ values
     'Pilihan kabel terpanjang untuk venue besar dan area outdoor terbatas daya.',
     'Rp 100.000 / 6 jam',
     'https://images.pexels.com/photos/4219862/pexels-photo-4219862.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    true,
+    TRUE,
     'Kabel',
-    false,
+    FALSE,
     18
   ),
   (
@@ -243,9 +336,9 @@ values
     'Perangkat komunikasi lapangan untuk koordinasi kru selama 12 jam.',
     'Rp 150.000 / 12 jam',
     'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    true,
+    TRUE,
     'Komunikasi',
-    false,
+    FALSE,
     19
   )
-on conflict do nothing;
+ON CONFLICT DO NOTHING;

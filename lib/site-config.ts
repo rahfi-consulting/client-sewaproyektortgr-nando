@@ -3,11 +3,11 @@ export const SITE_TAGLINE = "Pusat Sewa Proyektor Tangerang Terbaik & Terpercaya
 export const SITE_DESCRIPTION =
   "Layanan sewa proyektor, layar, audio, dan perlengkapan event dengan setup rapi, harga jelas, dan respons cepat untuk area Tangerang dan sekitarnya.";
 
-export const WHATSAPP_NUMBER =
-  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "6280000000000";
+export const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
 
 export const CONTACT_EMAIL = "halo@sewaproyektor.tgr";
-export const CONTACT_PHONE = "+62 800-0000-0000";
+export const CONTACT_SOCIAL = "sewaproyektor.tgr";
+export const CONTACT_PHONE = "+62 896-1587-7876";
 export const CONTACT_ADDRESS = "Tangerang, Banten";
 
 export const SITE_IMAGES = {

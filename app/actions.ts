@@ -5,7 +5,7 @@ import { parseProductFormData } from "@/lib/products";
 import { isSupabaseConfigured } from "@/lib/supabase/env";
 import {
   createSupabaseServerClient,
-  requireAuthenticatedUser,
+  requireAdminUser,
 } from "@/lib/supabase/server";
 
 function ensureSupabaseConfigured() {
@@ -16,7 +16,7 @@ function ensureSupabaseConfigured() {
 
 export async function saveProduct(formData: FormData) {
   ensureSupabaseConfigured();
-  await requireAuthenticatedUser();
+  await requireAdminUser();
 
   const payload = parseProductFormData(formData);
 
@@ -68,7 +68,7 @@ export async function saveProduct(formData: FormData) {
 
 export async function deleteProduct(productId: string) {
   ensureSupabaseConfigured();
-  await requireAuthenticatedUser();
+  await requireAdminUser();
 
   const supabase = await createSupabaseServerClient();
   const { error } = await supabase.from("products").delete().eq("id", productId);

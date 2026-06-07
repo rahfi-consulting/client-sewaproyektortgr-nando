@@ -60,7 +60,7 @@ export const DEFAULT_PRODUCTS: Product[] = [
   {
     id: "seed-screen-2",
     name: "Layar Stand 2,4 x 2,4 m",
-    description: "Layar ukuran lebih besar dengan stand untuk panggung dan ruangan luas.",
+    description: "Layar ukuran lebih besar dengan stand kuat untuk panggung dan ruangan yang luas.",
     price: "Rp 650.000 / 6 jam",
     imageUrl: SITE_IMAGES.screen,
     status: true,

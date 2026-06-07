@@ -29,7 +29,22 @@ export async function proxy(request: NextRequest) {
     },
   });
 
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (request.nextUrl.pathname.startsWith("/admin") && user?.email) {
+    const { data: adminUser } = await supabase
+      .from("admin_users")
+      .select("id")
+      .ilike("email", user.email)
+      .eq("is_active", true)
+      .maybeSingle();
+
+    if (!adminUser) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+  }
 
   return response;
 }
