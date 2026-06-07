@@ -24,10 +24,10 @@ export function SiteHeader() {
             priority
           />
           <span className="min-w-0 flex flex-col leading-none">
-            <span className="text-xs font-semibold uppercase tracking-[0.22em] text-zinc-950 sm:text-sm sm:tracking-[0.24em]">
+            <span className="text-xs font-bold uppercase text-zinc-950 sm:text-sm tracking-[0.1em]">
               {SITE_NAME}
             </span>
-            <span className="hidden text-[0.7rem] font-medium tracking-[0.18em] text-zinc-500 sm:block">
+            <span className="hidden text-[0.7rem] font-medium tracking-[0.1em] text-zinc-500 sm:block">
               Projector Rental
             </span>
           </span>

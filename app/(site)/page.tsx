@@ -22,7 +22,7 @@ export default async function HomePage() {
       <section className="bg-black text-white">
         <div className="section-shell grid min-h-[calc(100vh-80px)] items-center gap-10 py-14 sm:py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <div className="order-2 space-y-6 lg:order-1">
-            <span className="inline-flex rounded-full border border-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-300">
+            <span className="inline-flex rounded-full border border-white/20 px-3 py-1 text-xs font-bold tracking-[0.1em] text-zinc-300">
               Rental & Sales Support
             </span>
             <div className="space-y-4">
@@ -40,14 +40,14 @@ export default async function HomePage() {
                 rel="noreferrer"
                 className="button-light"
               >
-                SEWA SEKARANG!
+                SEWA SEKARANG
                 <ArrowRight className="h-4 w-4" />
               </a>
               <Link
                 href="/products"
                 className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-sm font-semibold text-white hover:bg-white/15"
               >
-                Lihat katalog
+                KATALOG PRODUK
               </Link>
             </div>
           </div>
@@ -94,16 +94,14 @@ export default async function HomePage() {
 
       <section className="bg-zinc-100 py-20">
         <div className="section-shell text-center">
-          <span className="text-sm font-semibold uppercase tracking-[0.24em] text-zinc-500">
-            Minimal setup, clear execution
+          <span className="text-sm font-semibold uppercase tracking-[0.1em] text-zinc-500">
+            Easy Process, Clear Execution
           </span>
-          <h2 className="mt-4 text-3xl font-semibold text-zinc-950 sm:text-4xl">
-            Crafted with Creativity, delivered with reliable event support.
+          <h2 className="mt-4 text-3xl font-bold text-zinc-950 sm:text-4xl">
+            Rental Proyektor Siap Pakai: Kondisi Prima, Langsung Antar ke Lokasi
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-zinc-600 sm:text-lg">
-            Kami fokus pada sewa proyektor dan perlengkapan pendukung yang rapi,
-            cepat, dan mudah dioperasikan untuk meeting, seminar, nobar, dan event
-            lapangan.
+            Solusi visual tepercaya tanpa kendala teknis. Kami menyediakan proyektor dengan kondisi mesin yang terawat secara profesional, ditambah layanan pengiriman kilat yang memastikan peralatan Anda sudah siap digunakan sebelum acara dimulai.
           </p>
         </div>
       </section>
@@ -112,15 +110,15 @@ export default async function HomePage() {
         <div className="section-shell">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <span className="text-sm font-semibold uppercase tracking-[0.24em] text-zinc-500">
-                Featured Catalog
+              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                Featured Product
               </span>
               <h2 className="mt-3 text-3xl font-semibold text-zinc-950 sm:text-4xl">
                 Produk Unggulan Kami
               </h2>
             </div>
             <Link href="/products" className="button-light self-start">
-              Semua produk
+              Semua Produk
             </Link>
           </div>
           <div className="mt-10">

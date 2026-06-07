@@ -16,7 +16,7 @@ export const DEFAULT_PRODUCTS: Product[] = [
   {
     id: "seed-projector-2",
     name: "Proyektor Panasonic 5500 Lumens - 6 Jam",
-    description: "Pilihan sewa proyektor dengan durasi menengah untuk rapat, seminar, dan kelas.",
+    description: "Pilihan sewa proyektor dengan durasi menengah untuk rapat ataupun seminar",
     price: "Rp 650.000 / 6 jam",
     imageUrl: SITE_IMAGES.projector,
     status: true,

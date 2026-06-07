@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { FaInstagram, FaTiktok } from "react-icons/fa";
-import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_PHONE, SITE_IMAGES, SITE_NAME } from "@/lib/site-config";
+import { CONTACT_ADDRESS, CONTACT_PHONE, SITE_IMAGES, SITE_NAME } from "@/lib/site-config";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 
 export default function AboutPage() {
@@ -13,13 +13,13 @@ export default function AboutPage() {
               About Us
             </span>
             <h1 className="mt-3 text-4xl font-semibold text-zinc-950 sm:text-5xl">
-              About Us
+              Tentang Kami
             </h1>
           </div>
 
           <div className="space-y-5 text-base leading-7 text-zinc-600 sm:text-lg">
             <p>
-              {SITE_NAME} berfokus pada layanan sewa proyektor dan perlengkapan
+              <b>{SITE_NAME}</b> berfokus pada layanan sewa proyektor dan perlengkapan
               event yang rapi, cepat, dan mudah dikoordinasikan. Kami melayani
               kebutuhan presentasi kantor, seminar, nobar, ibadah, hingga event
               komunitas di area Tangerang dan sekitarnya.
@@ -35,24 +35,46 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid gap-4 rounded-lg border border-zinc-200 bg-zinc-50 p-6 sm:grid-cols-3">
+          <div className="grid gap-4 border-zinc-200 bg-zinc-50 p-6 sm:grid-cols-2">
             <div>
-              <p className="text-sm uppercase tracking-[0.18em] text-zinc-500">
-                Email
-              </p>
-              <p className="mt-2 font-medium text-zinc-950">{CONTACT_EMAIL}</p>
-            </div>
-            <div>
-              <p className="text-sm uppercase tracking-[0.18em] text-zinc-500">
+              <p className="text-sm tracking-[0.1em] text-zinc-500">
                 Phone
               </p>
               <p className="mt-2 font-medium text-zinc-950">{CONTACT_PHONE}</p>
             </div>
             <div>
-              <p className="text-sm uppercase tracking-[0.18em] text-zinc-500">
+              <p className="text-sm tracking-[0.1em] text-zinc-500">
                 Address
               </p>
               <p className="mt-2 font-medium text-zinc-950">{CONTACT_ADDRESS}</p>
+            </div>
+            <div>
+              <p className="text-sm tracking-[0.1em] text-zinc-500">
+                Instagram
+              </p>
+              <a
+                href="https://instagram.com/sewaproyektor.tgr"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 mt-2 text-zinc-950"
+              >
+                <FaInstagram className="h-5 w-5" />
+                <span className="text-sm font-medium">@sewaproyektor.tgr</span>
+              </a>
+            </div>
+            <div>
+              <p className="text-sm tracking-[0.1em] text-zinc-500">
+                Tiktok
+              </p>
+              <a
+                href="https://tiktok.com/@sewaproyektor.tgr"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 mt-2 text-zinc-950"
+              >
+                <FaTiktok className="h-5 w-5" />
+                <span className="text-sm font-medium">@sewaproyektor.tgr</span>
+              </a>
             </div>
           </div>
 
@@ -64,35 +86,9 @@ export default function AboutPage() {
           >
             Hubungi via WhatsApp
           </a>
-
-          <div className="space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-zinc-500">
-              Follow Us
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-4 py-2 text-sm font-medium text-zinc-700 hover:border-zinc-950 hover:text-zinc-950"
-              >
-                <FaInstagram className="h-6 w-6" />
-                <span>Instagram</span>
-              </a>
-              <a
-                href="https://tiktok.com"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-4 py-2 text-sm font-medium text-zinc-700 hover:border-zinc-950 hover:text-zinc-950"
-              >
-                <FaTiktok className="h-6 w-6" />
-                <span>TikTok</span>
-              </a>
-            </div>
-          </div>
         </div>
 
-        <div className="overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100">
+        <div className="overflow-hidden border-zinc-200 bg-zinc-100">
           <Image
             src={SITE_IMAGES.about}
             alt="Team discussion and planning session"

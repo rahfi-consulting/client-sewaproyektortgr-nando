@@ -17,11 +17,11 @@ export function ProductCard({ product }: { product: Product }) {
       </div>
       <div className="flex h-full flex-col p-5">
         <div className="flex items-center justify-between gap-3">
-          <span className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
+          <span className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-semibold tracking-[0.1em] text-zinc-500">
             {product.category}
           </span>
           <span
-            className={`text-xs font-semibold uppercase tracking-[0.18em] ${
+            className={`text-xs font-semibold tracking-[0.1em] ${
               product.status ? "text-emerald-600" : "text-rose-600"
             }`}
           >
@@ -34,7 +34,7 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
         <div className="mt-6 flex items-end justify-between gap-4">
           <div>
-            <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">Harga</p>
+            <p className="text-xs tracking-[0.1em] text-zinc-500">Harga</p>
             <p className="mt-2 text-lg font-semibold text-zinc-950">{product.price}</p>
           </div>
         </div>
