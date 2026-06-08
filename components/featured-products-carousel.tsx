@@ -1,5 +1,6 @@
 "use client";
 
+import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { ProductCard } from "@/components/product-card";
@@ -16,8 +17,18 @@ export function FeaturedProductsCarousel({ products }: { products: Product[] }) 
 
   return (
     <Swiper
+      modules={[Autoplay]}
       spaceBetween={20}
       slidesPerView={1}
+      loop={products.length > 4}
+      speed={900}
+      grabCursor
+      simulateTouch
+      autoplay={{
+        delay: 2800,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      }}
       breakpoints={{
         768: {
           slidesPerView: 2,
