@@ -41,7 +41,7 @@ export function ProductCard({ product }: { product: Product }) {
         <a
           href={buildWhatsAppLink(product.name)}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="mt-6 inline-flex items-center justify-center gap-2 rounded-lg border border-[#25D366] bg-[#25D366] px-4 py-3 text-sm font-semibold text-white"
         >
           <MessageCircle className="h-4 w-4" />

@@ -59,7 +59,7 @@ export function SiteFooter() {
               <a
                 href="https://instagram.com"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-zinc-200 hover:border-white/25 hover:bg-white/10 hover:text-white"
               >
                 <FaInstagram className="h-5 w-5" />
@@ -68,7 +68,7 @@ export function SiteFooter() {
               <a
                 href="https://tiktok.com"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-zinc-200 hover:border-white/25 hover:bg-white/10 hover:text-white"
               >
                 <FaTiktok className="h-5 w-5" />

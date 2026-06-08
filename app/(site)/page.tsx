@@ -37,7 +37,7 @@ export default async function HomePage() {
               <a
                 href={buildWhatsAppLink()}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="button-light"
               >
                 SEWA SEKARANG

@@ -55,7 +55,7 @@ export default function AboutPage() {
               <a
                 href="https://instagram.com/sewaproyektor.tgr"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 mt-2 text-zinc-950"
               >
                 <FaInstagram className="h-5 w-5" />
@@ -69,7 +69,7 @@ export default function AboutPage() {
               <a
                 href="https://tiktok.com/@sewaproyektor.tgr"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 mt-2 text-zinc-950"
               >
                 <FaTiktok className="h-5 w-5" />
@@ -81,7 +81,7 @@ export default function AboutPage() {
           <a
             href={buildWhatsAppLink()}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="button-dark"
           >
             Hubungi via WhatsApp

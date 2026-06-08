@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { parseProductFormData } from "@/lib/products";
+import { assertValidProductId, parseProductFormData } from "@/lib/products";
 import { isSupabaseConfigured } from "@/lib/supabase/env";
 import {
   createSupabaseServerClient,
@@ -19,10 +19,6 @@ export async function saveProduct(formData: FormData) {
   await requireAdminUser();
 
   const payload = parseProductFormData(formData);
-
-  if (!payload.name || !payload.price) {
-    throw new Error("Product name and price are required.");
-  }
 
   const supabase = await createSupabaseServerClient();
 
@@ -69,6 +65,7 @@ export async function saveProduct(formData: FormData) {
 export async function deleteProduct(productId: string) {
   ensureSupabaseConfigured();
   await requireAdminUser();
+  assertValidProductId(productId);
 
   const supabase = await createSupabaseServerClient();
   const { error } = await supabase.from("products").delete().eq("id", productId);

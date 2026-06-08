@@ -72,10 +72,10 @@ export default async function AdminPage() {
               Private Dashboard
             </span>
             <h1 className="mt-2 text-3xl font-semibold sm:text-4xl">
-              Kelola katalog produk
+              Kelola Katalog Produk
             </h1>
             <p className="mt-3 text-sm leading-6 text-zinc-300 sm:text-base">
-              Login sebagai <span className="font-medium text-white">{user.email}</span>
+              Login as <span className="font-medium text-white">{user.email}</span>
             </p>
           </div>
           <SignOutButton />
@@ -84,7 +84,7 @@ export default async function AdminPage() {
         <div className="grid gap-8 xl:grid-cols-[360px_1fr]">
           <section className="rounded-lg border border-white/10 bg-white p-6 text-zinc-950">
             <div className="space-y-2">
-              <h2 className="text-2xl font-semibold">Tambah produk</h2>
+              <h2 className="text-2xl font-semibold">Tambah Produk</h2>
               <p className="text-sm leading-6 text-zinc-600">
                 Gunakan form ini untuk menambahkan item baru ke tabel
                 <code className="ml-1 rounded bg-zinc-100 px-1.5 py-0.5 text-xs">
@@ -130,20 +130,20 @@ export default async function AdminPage() {
               <div className="grid gap-3 sm:grid-cols-2">
                 <label className="flex items-center gap-3 rounded-lg border border-zinc-200 px-4 py-3 text-sm font-medium">
                   <input type="checkbox" name="status" defaultChecked className="checkbox-base" />
-                  Produk tersedia
+                  Produk Tersedia
                 </label>
                 <label className="flex items-center gap-3 rounded-lg border border-zinc-200 px-4 py-3 text-sm font-medium">
                   <input type="checkbox" name="featured" className="checkbox-base" />
-                  Tampilkan di homepage
+                  Tampilkan di Homepage
                 </label>
               </div>
-              <SubmitButton label="Simpan produk" pendingLabel="Menyimpan..." />
+              <SubmitButton label="Simpan Produk" pendingLabel="Menyimpan..." />
             </form>
           </section>
 
           <section className="space-y-4">
             <div className="rounded-lg border border-white/10 bg-white/5 p-6">
-              <h2 className="text-2xl font-semibold">Daftar produk</h2>
+              <h2 className="text-2xl font-semibold">Daftar Produk</h2>
               <p className="mt-2 text-sm leading-6 text-zinc-300">
                 Semua item dapat diedit langsung. Produk yang dinonaktifkan akan
                 tetap terlihat di dashboard, tetapi tidak tampil di halaman publik.
@@ -202,7 +202,7 @@ export default async function AdminPage() {
                             defaultChecked={product.status}
                             className="checkbox-base"
                           />
-                          Produk tersedia
+                          Produk Tersedia
                         </label>
                         <label className="flex items-center gap-3 rounded-lg border border-zinc-200 px-4 py-3 text-sm font-medium">
                           <input
@@ -211,7 +211,7 @@ export default async function AdminPage() {
                             defaultChecked={product.featured}
                             className="checkbox-base"
                           />
-                          Produk unggulan
+                          Produk Unggulan
                         </label>
                       </div>
                     </div>
@@ -221,13 +221,13 @@ export default async function AdminPage() {
                       className={`${inputClassName} mt-4 min-h-28`}
                     />
                     <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-                      <SubmitButton label="Update produk" pendingLabel="Mengupdate..." />
+                      <SubmitButton label="Update Produk" pendingLabel="Mengupdate..." />
                       <button
                         type="submit"
                         formAction={deleteProduct.bind(null, product.id)}
                         className="button-danger"
                       >
-                        Hapus produk
+                        Hapus Produk
                       </button>
                     </div>
                   </form>
