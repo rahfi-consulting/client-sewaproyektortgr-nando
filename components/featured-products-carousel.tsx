@@ -6,6 +6,14 @@ import { ProductCard } from "@/components/product-card";
 import type { Product } from "@/lib/types";
 
 export function FeaturedProductsCarousel({ products }: { products: Product[] }) {
+  if (products.length === 0) {
+    return (
+      <div className="rounded-lg border border-dashed border-zinc-200 bg-zinc-50 p-8 text-center text-sm text-zinc-500">
+        Produk unggulan belum tersedia. Tambahkan produk dari dashboard admin.
+      </div>
+    );
+  }
+
   return (
     <Swiper
       spaceBetween={20}

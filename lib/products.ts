@@ -1,6 +1,5 @@
 import "server-only";
 
-import { DEFAULT_PRODUCTS } from "@/lib/default-products";
 import { SITE_IMAGES } from "@/lib/site-config";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { Product, ProductRecord } from "@/lib/types";
@@ -84,18 +83,15 @@ function normalizeProduct(record: ProductRecord): Product {
 
 type GetProductsOptions = {
   includeUnavailable?: boolean;
-  fallbackToDefault?: boolean;
 };
 
 export async function getProducts(
   options: GetProductsOptions = {},
 ): Promise<Product[]> {
-  const { includeUnavailable = false, fallbackToDefault = true } = options;
+  const { includeUnavailable = false } = options;
 
   if (!isSupabaseConfigured()) {
-    return fallbackToDefault
-      ? DEFAULT_PRODUCTS.filter((product) => includeUnavailable || product.status)
-      : [];
+    return [];
   }
 
   try {
@@ -119,16 +115,12 @@ export async function getProducts(
     }
 
     if (!data || data.length === 0) {
-      return fallbackToDefault
-        ? DEFAULT_PRODUCTS.filter((product) => includeUnavailable || product.status)
-        : [];
+      return [];
     }
 
     return data.map((item) => normalizeProduct(item as ProductRecord));
   } catch {
-    return fallbackToDefault
-      ? DEFAULT_PRODUCTS.filter((product) => includeUnavailable || product.status)
-      : [];
+    return [];
   }
 }
 

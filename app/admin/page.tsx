@@ -60,7 +60,6 @@ export default async function AdminPage() {
 
   const products = await getProducts({
     includeUnavailable: true,
-    fallbackToDefault: false,
   });
 
   return (
@@ -152,7 +151,7 @@ export default async function AdminPage() {
 
             {products.length === 0 ? (
               <div className="rounded-lg border border-dashed border-white/15 bg-white/5 p-8 text-sm text-zinc-300">
-                Tabel produk masih kosong. Jalankan file SQL seed, lalu refresh halaman ini.
+                Tabel produk masih kosong. Tambahkan produk pertama Anda melalui form admin di sebelah kiri.
               </div>
             ) : (
               <div className="grid gap-4">

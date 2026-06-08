@@ -10,6 +10,7 @@ export const CONTACT_SOCIAL = "sewaproyektor.tgr";
 export const CONTACT_PHONE = "+62 896-1587-7876";
 export const CONTACT_ADDRESS = "Tangerang, Banten";
 
+// Change this to your actual images placeholder
 export const SITE_IMAGES = {
   hero: "https://images.pexels.com/photos/31726719/pexels-photo-31726719.jpeg?auto=compress&cs=tinysrgb&w=1200",
   about:

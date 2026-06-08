@@ -56,6 +56,8 @@ export function ProductCatalog({ products }: { products: Product[] }) {
     });
   }, [category, products, query]);
 
+  const hasActiveFilters = query.trim().length > 0 || category !== "all";
+
   return (
     <div className="space-y-8">
       <div className="grid gap-4 rounded-2xl border border-zinc-200 bg-zinc-50 p-4 shadow-[0_18px_50px_rgba(17,17,17,0.05)] md:grid-cols-[1fr_240px]">
@@ -127,7 +129,9 @@ export function ProductCatalog({ products }: { products: Product[] }) {
 
       {filteredProducts.length === 0 ? (
         <div className="rounded-lg border border-dashed border-zinc-300 bg-zinc-50 p-8 text-center text-sm text-zinc-500">
-          Tidak ada produk yang cocok dengan pencarian Anda.
+          {products.length === 0 && !hasActiveFilters
+            ? "Katalog produk masih kosong. Tambahkan produk dari dashboard admin."
+            : "Tidak ada produk yang cocok dengan pencarian Anda."}
         </div>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
