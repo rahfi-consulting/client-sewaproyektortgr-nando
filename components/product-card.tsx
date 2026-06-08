@@ -21,9 +21,8 @@ export function ProductCard({ product }: { product: Product }) {
             {product.category}
           </span>
           <span
-            className={`text-xs font-semibold tracking-[0.1em] ${
-              product.status ? "text-emerald-600" : "text-rose-600"
-            }`}
+            className={`text-xs font-semibold tracking-[0.1em] ${product.status ? "text-emerald-600" : "text-rose-600"
+              }`}
           >
             {product.status ? "Tersedia" : "Tidak tersedia"}
           </span>

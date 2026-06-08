@@ -42,9 +42,8 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium ${
-                  active ? "text-zinc-950" : "text-zinc-500 hover:text-zinc-950"
-                }`}
+                className={`text-sm font-medium ${active ? "text-zinc-950" : "text-zinc-500 hover:text-zinc-950"
+                  }`}
               >
                 {link.label}
               </Link>
@@ -75,9 +74,8 @@ export function SiteHeader() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className={`rounded-lg px-3 py-3 text-sm font-medium ${
-                    active ? "bg-zinc-950 text-white" : "text-zinc-600 hover:bg-zinc-100"
-                  }`}
+                  className={`rounded-lg px-3 py-3 text-sm font-medium ${active ? "bg-zinc-950 text-white" : "text-zinc-600 hover:bg-zinc-100"
+                    }`}
                 >
                   {link.label}
                 </Link>

@@ -45,7 +45,7 @@ export function AdminLogin() {
         </span>
         <h1 className="mt-3 text-3xl font-semibold">Login Dashboard</h1>
         <p className="mt-4 text-justify text-sm leading-7 text-zinc-300">
-          Masukan email dan password untuk mengakses dashboard admin dan mengelola 
+          Masukan email dan password untuk mengakses dashboard admin dan mengelola
           katalog produk yang akan di tayangkan di website.
         </p>
 

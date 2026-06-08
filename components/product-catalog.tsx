@@ -76,17 +76,15 @@ export function ProductCatalog({ products }: { products: Product[] }) {
           <button
             type="button"
             onClick={() => setIsCategoryOpen((open) => !open)}
-            className={`field-base flex min-h-14 items-center justify-between rounded-xl pr-4 text-left ${
-              isCategoryOpen ? "border-zinc-950 shadow-[0_0_0_3px_rgba(17,17,17,0.08)]" : ""
-            }`}
+            className={`field-base flex min-h-14 items-center justify-between rounded-xl pr-4 text-left ${isCategoryOpen ? "border-zinc-950 shadow-[0_0_0_3px_rgba(17,17,17,0.08)]" : ""
+              }`}
             aria-haspopup="listbox"
             aria-expanded={isCategoryOpen}
           >
             <span className="truncate text-[0.95rem] text-zinc-950">{categoryLabel}</span>
             <ChevronDown
-              className={`h-4 w-4 shrink-0 text-zinc-400 transition-transform ${
-                isCategoryOpen ? "rotate-180" : ""
-              }`}
+              className={`h-4 w-4 shrink-0 text-zinc-400 transition-transform ${isCategoryOpen ? "rotate-180" : ""
+                }`}
             />
           </button>
 
@@ -108,11 +106,10 @@ export function ProductCatalog({ products }: { products: Product[] }) {
                         setCategory(item);
                         setIsCategoryOpen(false);
                       }}
-                      className={`flex w-full items-center justify-between px-4 py-3 text-left text-sm ${
-                        isActive
+                      className={`flex w-full items-center justify-between px-4 py-3 text-left text-sm ${isActive
                           ? "bg-zinc-950 text-white"
                           : "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950"
-                      }`}
+                        }`}
                       role="option"
                       aria-selected={isActive}
                     >
