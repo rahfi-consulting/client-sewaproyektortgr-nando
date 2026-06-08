@@ -12,21 +12,8 @@ export const CONTACT_ADDRESS = "Tangerang, Banten";
 
 // Change this to your actual images placeholder
 export const SITE_IMAGES = {
-  hero: "https://images.pexels.com/photos/31726719/pexels-photo-31726719.jpeg?auto=compress&cs=tinysrgb&w=1200",
-  about:
-    "https://images.pexels.com/photos/5955016/pexels-photo-5955016.jpeg?auto=compress&cs=tinysrgb&w=1200",
-  projector:
-    "https://images.pexels.com/photos/31726719/pexels-photo-31726719.jpeg?auto=compress&cs=tinysrgb&w=1200",
-  screen:
-    "https://images.pexels.com/photos/5955016/pexels-photo-5955016.jpeg?auto=compress&cs=tinysrgb&w=1200",
-  audio:
-    "https://images.pexels.com/photos/1034651/pexels-photo-1034651.jpeg?auto=compress&cs=tinysrgb&w=1200",
-  accessory:
-    "https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=1200",
-  cable:
-    "https://images.pexels.com/photos/4219862/pexels-photo-4219862.jpeg?auto=compress&cs=tinysrgb&w=1200",
-  communication:
-    "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  hero: "/home-image.jpeg",
+  about: "/about-image.jpeg",
 } as const;
 
 export const NAV_LINKS = [
@@ -37,7 +24,7 @@ export const NAV_LINKS = [
 
 export const FEATURE_ITEMS = [
   {
-    title: "Free Shipping",
+    title: "Fast Shipping",
     description: "Pengiriman cepat untuk area layanan Tangerang.",
   },
   {

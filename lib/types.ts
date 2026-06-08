@@ -21,3 +21,11 @@ export type ProductRecord = {
   featured: boolean | null;
   sort_order: number | null;
 };
+
+export type ProductMutationState = {
+  ok: boolean;
+  operation: "create" | "update" | "delete";
+  message: string;
+  productName: string;
+  productStatusLabel: string;
+};

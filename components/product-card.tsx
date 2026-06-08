@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { MessageCircle } from "lucide-react";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 import type { Product } from "@/lib/types";
@@ -7,12 +6,13 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-lg border border-zinc-200 bg-white">
       <div className="relative aspect-[4/3] overflow-hidden bg-zinc-100">
-        <Image
+        {/* Product URLs are admin-managed and may come from multiple external hosts. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src={product.imageUrl}
           alt={product.name}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-          className="object-cover"
+          loading="lazy"
+          className="h-full w-full object-cover"
         />
       </div>
       <div className="flex h-full flex-col p-5">
