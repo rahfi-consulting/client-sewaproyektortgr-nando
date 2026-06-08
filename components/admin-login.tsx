@@ -40,7 +40,7 @@ export function AdminLogin() {
   return (
     <div className="min-h-screen bg-zinc-950 px-4 py-16 text-white sm:px-6 lg:px-8">
       <div className="mx-auto max-w-md rounded-lg border border-white/10 bg-white/5 p-8">
-        <span className="text-sm font-bold uppercase tracking-[0.2em] text-zinc-400">
+        <span className="text-sm font-bold uppercase tracking-[0.1em] text-zinc-400">
           Admin Access
         </span>
         <h1 className="mt-3 text-3xl font-semibold">Login Dashboard</h1>

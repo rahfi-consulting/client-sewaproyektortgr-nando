@@ -15,15 +15,15 @@ export default async function AdminPage() {
     return (
       <div className="min-h-screen bg-zinc-950 px-4 py-16 text-white sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl rounded-lg border border-white/10 bg-white/5 p-8">
-          <span className="text-sm font-bold uppercase tracking-[0.2em] text-zinc-400">
+          <span className="text-sm font-bold uppercase tracking-[0.1em] text-zinc-400">
             Admin Setup
           </span>
           <h1 className="mt-3 text-3xl font-semibold sm:text-4xl">
-            Supabase is Not Configured
+            Database is Not Configured
           </h1>
           <p className="mt-4 max-w-2xl text-justify leading-7 text-zinc-300">
             Fill the <b>Environment Variables</b> in your deployments or if in local development, the <code>.env.local</code> file based on the <code>.env.example</code> file,
-            then run the SQL script provided on your Supabase project.
+            then run the SQL script provided on your <b>Supabase</b> project.
           </p>
         </div>
       </div>
@@ -67,7 +67,7 @@ export default async function AdminPage() {
       <div className="mx-auto max-w-7xl space-y-8">
         <div className="flex flex-col gap-4 rounded-lg border border-white/10 bg-white/5 p-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <span className="text-sm font-bold uppercase tracking-[0.2em] text-zinc-400">
+            <span className="text-sm font-bold uppercase tracking-[0.1em] text-zinc-400">
               Private Dashboard
             </span>
             <h1 className="mt-2 text-3xl font-semibold sm:text-4xl">
@@ -94,36 +94,36 @@ export default async function AdminPage() {
             </div>
 
             <form action={saveProduct} className="mt-6 space-y-4">
-              <input name="name" placeholder="Nama produk" className={inputClassName} required />
+              <input name="name" placeholder="Nama Produk" className={inputClassName} required />
               <input
                 name="category"
-                placeholder="Kategori, mis. Proyektor"
+                placeholder="Kategori, exs. Proyektor"
                 className={inputClassName}
                 defaultValue="General"
                 required
               />
               <input
                 name="price"
-                placeholder="Harga, mis. Rp 350.000 / 3 jam"
+                placeholder="Harga, ex. Rp 350.000 / 3 jam"
                 className={inputClassName}
                 required
               />
               <input
                 name="image_url"
-                placeholder="URL gambar produk"
+                placeholder="URL Gambar Produk"
                 className={inputClassName}
               />
               <input
                 name="sort_order"
                 type="number"
                 min="0"
-                placeholder="Urutan tampil"
+                placeholder="Urutan Tampil"
                 className={inputClassName}
                 defaultValue={0}
               />
               <textarea
                 name="description"
-                placeholder="Deskripsi singkat produk"
+                placeholder="Deskripsi Singkat Produk"
                 className={`${inputClassName} min-h-28`}
               />
               <div className="grid gap-3 sm:grid-cols-2">

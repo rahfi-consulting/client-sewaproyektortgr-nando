@@ -12,7 +12,7 @@ export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-zinc-200 bg-white/95 backdrop-blur">
+    <header className="fixed inset-x-0 top-0 z-50 w-full border-b border-zinc-200 bg-white/95 shadow-sm backdrop-blur">
       <div className="section-shell flex h-20 items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-3">
           <Image
