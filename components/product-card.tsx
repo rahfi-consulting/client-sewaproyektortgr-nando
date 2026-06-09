@@ -6,14 +6,22 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-lg border border-zinc-200 bg-white">
       <div className="relative aspect-[4/3] overflow-hidden bg-zinc-100">
-        {/* Product URLs are admin-managed and may come from multiple external hosts. */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={product.imageUrl}
-          alt={product.name}
-          loading="lazy"
-          className="h-full w-full object-cover"
-        />
+        {product.imageUrl ? (
+          <>
+            {/* Product URLs are admin-managed and may come from multiple external hosts. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={product.imageUrl}
+              alt={product.name}
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+          </>
+        ) : (
+          <div className="flex h-full items-center justify-center px-6 text-center text-sm font-medium text-zinc-500">
+            Gambar produk belum tersedia.
+          </div>
+        )}
       </div>
       <div className="flex h-full flex-col p-5">
         <div className="flex items-center justify-between gap-3">

@@ -1,19 +1,8 @@
 import "server-only";
 
-import { SITE_IMAGES } from "@/lib/site-config";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { Product, ProductRecord } from "@/lib/types";
 import { isSupabaseConfigured } from "@/lib/supabase/env";
-
-const CATEGORY_IMAGE_MAP: Record<string, string> = {
-  Proyektor: SITE_IMAGES.projector,
-  Layar: SITE_IMAGES.screen,
-  Audio: SITE_IMAGES.audio,
-  Perlengkapan: SITE_IMAGES.accessory,
-  Kabel: SITE_IMAGES.cable,
-  Komunikasi: SITE_IMAGES.communication,
-  General: SITE_IMAGES.projector,
-};
 
 const PRODUCT_LIMITS = {
   name: 120,
@@ -43,9 +32,9 @@ function assertUuid(value: string, field: string) {
   }
 }
 
-function parseProductImageUrl(imageUrl: string, category: string) {
+function parseProductImageUrl(imageUrl: string) {
   if (!imageUrl) {
-    return CATEGORY_IMAGE_MAP[category] || SITE_IMAGES.projector;
+    throw new Error("Image URL is required.");
   }
 
   assertLength(imageUrl, PRODUCT_LIMITS.imageUrl, "Image URL");
@@ -73,7 +62,7 @@ function normalizeProduct(record: ProductRecord): Product {
     name: record.name,
     description: record.description?.trim() || "Detail produk akan mengikuti kebutuhan acara Anda.",
     price: record.price,
-    imageUrl: record.image_url?.trim() || CATEGORY_IMAGE_MAP[category] || SITE_IMAGES.projector,
+    imageUrl: record.image_url?.trim() || "",
     status: record.status,
     category,
     featured: Boolean(record.featured),
@@ -172,7 +161,7 @@ export function parseProductFormData(formData: FormData) {
     name,
     description,
     price,
-    image_url: parseProductImageUrl(readTrimmedText(formData, "image_url"), category),
+    image_url: parseProductImageUrl(readTrimmedText(formData, "image_url")),
     status: formData.get("status") === "on",
     category,
     featured: formData.get("featured") === "on",
