@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { FaInstagram, FaTiktok } from "react-icons/fa";
-import { CONTACT_ADDRESS, CONTACT_PHONE, SITE_IMAGES, SITE_NAME } from "@/lib/site-config";
+import { CONTACT_ADDRESS, PHONE_NUMBER, SITE_IMAGES, SITE_NAME } from "@/lib/site-config";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 
 export default function AboutPage() {
@@ -40,7 +40,7 @@ export default function AboutPage() {
               <p className="text-sm tracking-[0.1em] text-zinc-500">
                 Phone
               </p>
-              <p className="mt-2 font-medium text-zinc-950">{CONTACT_PHONE}</p>
+              <p className="mt-2 font-medium text-zinc-950">{PHONE_NUMBER}</p>
             </div>
             <div>
               <p className="text-sm tracking-[0.1em] text-zinc-500">

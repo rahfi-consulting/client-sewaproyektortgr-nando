@@ -5,12 +5,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { ProductCard } from "@/components/product-card";
 import type { Product } from "@/lib/types";
+import {PHONE_NUMBER} from "@/lib/site-config";
 
 export function FeaturedProductsCarousel({ products }: { products: Product[] }) {
   if (products.length === 0) {
     return (
       <div className="rounded-lg border border-dashed border-zinc-200 bg-zinc-50 p-8 text-center text-sm text-zinc-500">
-        Produk unggulan belum tersedia. Tambahkan produk dari dashboard admin.
+        Produk unggulan belum tersedia, Silahkan cek kembali nanti atau hubungi Admin: {PHONE_NUMBER}
       </div>
     );
   }

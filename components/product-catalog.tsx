@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Check, ChevronDown, Search } from "lucide-react";
 import { ProductCard } from "@/components/product-card";
 import type { Product } from "@/lib/types";
+import { PHONE_NUMBER } from "@/lib/site-config";
 
 export function ProductCatalog({ products }: { products: Product[] }) {
   const [query, setQuery] = useState("");
@@ -127,7 +128,7 @@ export function ProductCatalog({ products }: { products: Product[] }) {
       {filteredProducts.length === 0 ? (
         <div className="rounded-lg border border-dashed border-zinc-300 bg-zinc-50 p-8 text-center text-sm text-zinc-500">
           {products.length === 0 && !hasActiveFilters
-            ? "Katalog produk masih kosong. Tambahkan produk dari dashboard admin."
+            ? `Katalog produk masih kosong. SIlahkan cek kembali nanti atau hubungi Admin: ${PHONE_NUMBER}`
             : "Tidak ada produk yang cocok dengan pencarian Anda."}
         </div>
       ) : (

@@ -3,10 +3,11 @@ import Link from "next/link";
 import { FaInstagram, FaTiktok } from "react-icons/fa";
 import {
   CONTACT_ADDRESS,
-  CONTACT_PHONE,
+  PHONE_NUMBER,
   NAV_LINKS,
   SITE_DESCRIPTION,
   SITE_NAME,
+  CONTACT_SOCIAL,
 } from "@/lib/site-config";
 
 export function SiteFooter() {
@@ -53,11 +54,11 @@ export function SiteFooter() {
             Contact Information
           </p>
           <div className="space-y-3 text-sm leading-7 text-zinc-300">
-            <p>WhatsApp Number: {CONTACT_PHONE}</p>
+            <p>WhatsApp Number: {PHONE_NUMBER}</p>
             <p>{CONTACT_ADDRESS}, Indonesia</p>
             <div className="flex gap-3 pt-2">
               <a
-                href="https://instagram.com"
+                href={`https://instagram.com/${CONTACT_SOCIAL}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-zinc-200 hover:border-white/25 hover:bg-white/10 hover:text-white"
@@ -66,7 +67,7 @@ export function SiteFooter() {
                 <span className="text-sm font-medium">Instagram</span>
               </a>
               <a
-                href="https://tiktok.com"
+                href={`https://tiktok.com/@${CONTACT_SOCIAL}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-zinc-200 hover:border-white/25 hover:bg-white/10 hover:text-white"
