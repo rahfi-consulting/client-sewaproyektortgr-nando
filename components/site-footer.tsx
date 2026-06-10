@@ -1,14 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaInstagram, FaTiktok } from "react-icons/fa";
+import { FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
 import {
   CONTACT_ADDRESS,
-  PHONE_NUMBER,
   NAV_LINKS,
   SITE_DESCRIPTION,
   SITE_NAME,
   CONTACT_SOCIAL,
 } from "@/lib/site-config";
+import { buildWhatsAppLink } from "@/lib/whatsapp";
 
 export function SiteFooter() {
   return (
@@ -54,9 +54,17 @@ export function SiteFooter() {
             Contact Information
           </p>
           <div className="space-y-3 text-sm leading-7 text-zinc-300">
-            <p>WhatsApp Number: {PHONE_NUMBER}</p>
             <p>{CONTACT_ADDRESS}, Indonesia</p>
-            <div className="flex gap-3 pt-2">
+            <div className="flex gap-3 pt-2 flex-wrap">
+              <a
+                href={buildWhatsAppLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-zinc-200 hover:border-white/25 hover:bg-white/10 hover:text-white"
+              >
+                <FaWhatsapp className="h-5 w-5" />
+                <span className="text-sm font-medium">WhatsApp</span>
+              </a>
               <a
                 href={`https://instagram.com/${CONTACT_SOCIAL}`}
                 target="_blank"
