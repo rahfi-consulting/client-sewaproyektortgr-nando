@@ -1,7 +1,7 @@
 export const SITE_NAME = "SEWAPROYEKTOR.TGR";
 export const SITE_TAGLINE = "Pusat Sewa Proyektor Tangerang Terbaik & Terpercaya!";
 export const SITE_DESCRIPTION =
-  "Layanan sewa proyektor, layar, audio, dan perlengkapan event dengan setup rapi, harga jelas, dan respons cepat untuk area Tangerang dan sekitarnya.";
+  "Layanan sewa proyektor, layar, audio, dan perlengkapan event lain mulai dari 3 jam dengan harga jelas dengan respons cepat untuk area Tangerang dan sekitarnya.";
 
 export const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
 export const PHONE_NUMBER = process.env.NEXT_PUBLIC_PHONE_NUMBER;
@@ -28,8 +28,8 @@ export const FEATURE_ITEMS = [
     description: "Pengiriman cepat untuk area layanan Tangerang.",
   },
   {
-    title: "Simple Returns",
-    description: "Penjemputan alat dan pengecekan selesai acara.",
+    title: "Simple Form",
+    description: "Isi data diri dan validasi lokasi yang cepat dan mudah",
   },
   {
     title: "Secured Payments",

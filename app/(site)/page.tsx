@@ -3,7 +3,7 @@ import Link from "next/link";
 import {
   ArrowRight,
   PhoneCall,
-  RotateCcw,
+  Form,
   ShieldCheck,
   Truck,
 } from "lucide-react";
@@ -12,7 +12,7 @@ import { buildWhatsAppLink } from "@/lib/whatsapp";
 import { FEATURE_ITEMS, SITE_DESCRIPTION, SITE_IMAGES, SITE_TAGLINE } from "@/lib/site-config";
 import { getFeaturedProducts } from "@/lib/products";
 
-const featureIcons = [Truck, RotateCcw, ShieldCheck, PhoneCall];
+const featureIcons = [Truck, Form, ShieldCheck, PhoneCall];
 
 export default async function HomePage() {
   const featuredProducts = await getFeaturedProducts();
@@ -98,7 +98,7 @@ export default async function HomePage() {
             Easy Process, Clear Execution
           </span>
           <h2 className="mt-4 text-3xl font-bold text-zinc-950 sm:text-4xl">
-            Rental Proyektor Siap Pakai: Kondisi Prima, Langsung Antar ke Lokasi
+            Rental Proyektor Siap Pakai: Kualitas Terbaik, Langsung Antar ke Lokasi
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-zinc-600 sm:text-lg">
             Solusi visual tepercaya tanpa kendala teknis. Kami menyediakan proyektor dengan kondisi mesin yang terawat secara profesional, ditambah layanan pengiriman kilat yang memastikan peralatan Anda sudah siap digunakan sebelum acara dimulai.
