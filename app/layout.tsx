@@ -8,6 +8,11 @@ export const metadata: Metadata = {
   },
   description:
     "Projector rental and equipment catalog for SEWAPROYEKTOR.TGR in Tangerang.",
+  icons: {
+    icon: "/light-logo.png",
+    shortcut: "/light-logo.png",
+    apple: "/light-logo.png",
+  },
 };
 
 export default function RootLayout({
