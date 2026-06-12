@@ -27,7 +27,7 @@ export function SiteHeader() {
             <span className="text-xs font-bold uppercase text-zinc-950 sm:text-sm font-bold">
               {SITE_NAME}
             </span>
-            <span className="hidden text-xs font-medium text-zinc-500 sm:block">
+            <span className="text-xs font-medium text-zinc-500 sm:block">
               Projector Rental
             </span>
           </span>

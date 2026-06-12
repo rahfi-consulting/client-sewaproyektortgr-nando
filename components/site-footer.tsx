@@ -27,13 +27,12 @@ export function SiteFooter() {
               <span className="block text-sm font-bold uppercase text-white">
                 {SITE_NAME}
               </span>
-              <span className="mt-1 block text-[0.7rem] font-medium text-zinc-400">
+              <span className="mt-1 block text-xs font-medium text-zinc-500">
                 Projector Rental
               </span>
             </span>
           </Link>
           <p className="max-w-sm text-sm leading-7 text-zinc-300">{SITE_DESCRIPTION}</p>
-
         </div>
 
         <div className="space-y-2">

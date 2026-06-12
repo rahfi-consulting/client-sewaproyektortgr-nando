@@ -25,11 +25,11 @@ export function ProductCard({ product }: { product: Product }) {
       </div>
       <div className="flex h-full flex-col p-5">
         <div className="flex items-center justify-between gap-3">
-          <span className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-semibold tracking-[0.1em] text-zinc-500">
+          <span className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-semibold text-zinc-500">
             {product.category}
           </span>
           <span
-            className={`text-xs font-semibold tracking-[0.1em] ${product.status ? "text-emerald-600" : "text-rose-600"
+            className={`text-xs font-semibold ${product.status ? "text-emerald-600" : "text-rose-600"
               }`}
           >
             {product.status ? "Tersedia" : "Tidak tersedia"}
