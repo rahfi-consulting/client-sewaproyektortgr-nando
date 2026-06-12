@@ -1,4 +1,4 @@
-[![Website](https://img.shields.io/badge/Website-sewaproyektor.tgr-111111?)](https://sewaproyektortgr.com)
+[![Website](https://img.shields.io/badge/Website-sewaproyektortgr.com-111111?)](https://sewaproyektortgr.com)
 [![Instagram](https://img.shields.io/badge/Instagram-%40sewaproyektor.tgr-E4405F?&logo=instagram&logoColor=white)](https://instagram.com/sewaproyektor.tgr)
 [![TikTok](https://img.shields.io/badge/TikTok-%40sewaproyektor.tgr-000000?&logo=tiktok&logoColor=white)](https://tiktok.com/@sewaproyektor.tgr)
 [![Next.js](https://img.shields.io/badge/Next.js-16.2.7-000000?logo=next.js&logoColor=white)](https://nextjs.org)
