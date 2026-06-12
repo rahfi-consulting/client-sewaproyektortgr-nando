@@ -24,10 +24,10 @@ export function SiteFooter() {
               className="h-10 w-auto"
             />
             <span className="min-w-0 leading-none">
-              <span className="block text-sm font-bold uppercase tracking-[0.1em] text-white">
+              <span className="block text-sm font-bold uppercase text-white">
                 {SITE_NAME}
               </span>
-              <span className="mt-1 block text-[0.7rem] font-medium tracking-[0.1em] text-zinc-400">
+              <span className="mt-1 block text-[0.7rem] font-medium text-zinc-400">
                 Projector Rental
               </span>
             </span>
@@ -37,7 +37,7 @@ export function SiteFooter() {
         </div>
 
         <div className="space-y-2">
-          <p className="text-sm font-semibold tracking-[0.1em] text-zinc-400">
+          <p className="text-sm font-semibold text-zinc-400">
             Store Links
           </p>
           <div className="flex flex-col gap-3 text-sm text-zinc-300">
@@ -50,7 +50,7 @@ export function SiteFooter() {
         </div>
 
         <div className="space-y-2">
-          <p className="text-sm font-semibold tracking-[0.1em] text-zinc-400">
+          <p className="text-sm font-semibold text-zinc-400">
             Contact Information
           </p>
           <div className="space-y-3 text-sm leading-7 text-zinc-300">
@@ -88,8 +88,8 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="section-shell border-t border-zinc-800 mt-10 pt-10">
-        <p className="text-center text-sm text-zinc-400">
-          © 2026 <b>{SITE_NAME}</b> | All Rights Reserved.
+        <p className="text-center uppercase tracking-[0.1em] text-sm text-zinc-400">
+          <b>© 2026 {SITE_NAME} - All Rights Reserved</b>
         </p>
       </div>
     </footer>

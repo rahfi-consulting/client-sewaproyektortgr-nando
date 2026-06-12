@@ -91,7 +91,7 @@ export function ProductCatalog({ products }: { products: Product[] }) {
 
           {isCategoryOpen ? (
             <div className="absolute inset-x-0 top-[calc(100%+0.5rem)] z-20 overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-[0_24px_60px_rgba(17,17,17,0.14)]">
-              <div className="border-b border-zinc-100 px-4 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+              <div className="border-b border-zinc-100 px-4 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-zinc-500">
                 Pilih kategori
               </div>
               <div className="max-h-72 overflow-y-auto py-2" role="listbox" aria-label="Pilih kategori produk">

@@ -37,11 +37,11 @@ export default async function AdminPage() {
     return (
       <div className="min-h-screen bg-zinc-950 px-4 py-16 text-white sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl rounded-lg border border-white/10 bg-white/5 p-8">
-          <span className="text-sm font-bold uppercase tracking-[0.2em] text-zinc-400">
+          <span className="text-sm font-bold uppercase tracking-[0.1em] text-zinc-400">
             Access Restricted
           </span>
           <h1 className="mt-3 text-3xl font-semibold sm:text-4xl">
-            Email this hasn&apos;t been registered as an admin.
+            This email hasn&apos;t been registered as an admin.
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-300">
             Add this email to the <code>public.admin_users</code> table in Supabase,

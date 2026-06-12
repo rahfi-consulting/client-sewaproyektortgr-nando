@@ -9,7 +9,7 @@ export default function AboutPage() {
       <div className="section-shell grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-center">
         <div className="space-y-8">
           <div>
-            <span className="text-sm font-semibold uppercase tracking-[0.24em] text-zinc-500">
+            <span className="text-sm font-semibold uppercase tracking-[0.1em] text-zinc-500">
               About Us
             </span>
             <h1 className="mt-3 text-4xl font-semibold text-zinc-950 sm:text-5xl">

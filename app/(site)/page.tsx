@@ -22,8 +22,8 @@ export default async function HomePage() {
       <section className="bg-black text-white">
         <div className="section-shell grid min-h-[calc(100vh-80px)] items-center gap-10 py-14 sm:py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <div className="order-2 space-y-6 lg:order-1">
-            <span className="inline-flex rounded-full border border-white/20 px-3 py-1 text-xs font-bold tracking-[0.1em] text-zinc-300">
-              Rental & Sales Support
+            <span className="inline-flex rounded-full border border-white/20 px-3 py-1 text-xs font-bold text-zinc-300">
+              Provide Your Visual Needs
             </span>
             <div className="space-y-4">
               <h1 className="max-w-2xl text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
@@ -110,7 +110,7 @@ export default async function HomePage() {
         <div className="section-shell">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">
+              <span className="text-sm font-semibold uppercase tracking-[0.1em] text-zinc-500">
                 Featured Product
               </span>
               <h2 className="mt-3 text-3xl font-semibold text-zinc-950 sm:text-4xl">
