@@ -1,7 +1,9 @@
 type GoogleTagValue = string | number | boolean | null | undefined;
 type GoogleTagParams = Record<string, GoogleTagValue>;
 
-export const GOOGLE_TAG_ID = process.env.NEXT_PUBLIC_GOOGLE_TAG_ID;
+const FALLBACK_GOOGLE_TAG_ID = "AW-18239175991";
+
+export const GOOGLE_TAG_ID =process.env.NEXT_PUBLIC_GOOGLE_TAG_ID || FALLBACK_GOOGLE_TAG_ID;
 
 export const GOOGLE_TAG_SCRIPT_SRC = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_TAG_ID}`;
 
@@ -14,7 +16,7 @@ function getGoogleTag() {
 }
 
 export function hasGoogleTag() {
-  return Boolean(GOOGLE_TAG_ID && GOOGLE_TAG_ID.length > 0);
+  return GOOGLE_TAG_ID.length > 0;
 }
 
 export function trackGoogleEvent(action: string, params: GoogleTagParams = {}) {
