@@ -3,9 +3,8 @@ type GoogleTagParams = Record<string, GoogleTagValue>;
 
 const FALLBACK_GOOGLE_TAG_ID = "AW-18239175991";
 
-export const GOOGLE_TAG_ID =process.env.NEXT_PUBLIC_GOOGLE_TAG_ID || FALLBACK_GOOGLE_TAG_ID;
-
-export const GOOGLE_TAG_SCRIPT_SRC = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_TAG_ID}`;
+export const GOOGLE_TAG_ID =
+  process.env.NEXT_PUBLIC_GOOGLE_TAG_ID || FALLBACK_GOOGLE_TAG_ID;
 
 function getGoogleTag() {
   if (typeof window === "undefined") {
@@ -19,14 +18,25 @@ export function hasGoogleTag() {
   return GOOGLE_TAG_ID.length > 0;
 }
 
-export function trackGoogleEvent(action: string, params: GoogleTagParams = {}) {
-  const gtag = getGoogleTag();
-
-  if (!gtag) {
+function pushDataLayerEvent(action: string, params: GoogleTagParams = {}) {
+  if (typeof window === "undefined") {
     return;
   }
 
-  gtag("event", action, params);
+  const dataLayer = window.dataLayer || [];
+  window.dataLayer = dataLayer;
+  dataLayer.push({ event: action, ...params });
+}
+
+export function trackGoogleEvent(action: string, params: GoogleTagParams = {}) {
+  const gtag = getGoogleTag();
+
+  if (gtag) {
+    gtag("event", action, params);
+    return;
+  }
+
+  pushDataLayerEvent(action, params);
 }
 
 export function trackGoogleAdsConversion(

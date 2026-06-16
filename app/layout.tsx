@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleTag } from "@/components/google-tag";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="id" className="h-full antialiased">
       <body className="min-h-full bg-white font-sans text-zinc-950">
+        <GoogleTag />
         {children}
       </body>
     </html>
