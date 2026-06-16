@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
+import { TrackedWhatsAppLink } from "@/components/tracked-whatsapp-link";
 import {
   CONTACT_ADDRESS,
   NAV_LINKS,
@@ -55,15 +56,16 @@ export function SiteFooter() {
           <div className="space-y-3 text-sm leading-7 text-zinc-300">
             <p>{CONTACT_ADDRESS}, Indonesia</p>
             <div className="flex gap-3 pt-2 flex-wrap">
-              <a
+              <TrackedWhatsAppLink
                 href={buildWhatsAppLink()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-zinc-200 hover:border-white/25 hover:bg-white/10 hover:text-white"
+                source="footer"
               >
                 <FaWhatsapp className="h-5 w-5" />
                 <span className="text-sm font-medium">WhatsApp</span>
-              </a>
+              </TrackedWhatsAppLink>
               <a
                 href={`https://instagram.com/${CONTACT_SOCIAL}`}
                 target="_blank"

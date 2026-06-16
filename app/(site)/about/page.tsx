@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { FaInstagram, FaTiktok } from "react-icons/fa";
+import { TrackedWhatsAppLink } from "@/components/tracked-whatsapp-link";
 import { CONTACT_ADDRESS, PHONE_NUMBER, SITE_IMAGES, SITE_NAME } from "@/lib/site-config";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 
@@ -78,14 +79,15 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <a
+          <TrackedWhatsAppLink
             href={buildWhatsAppLink()}
             target="_blank"
             rel="noopener noreferrer"
             className="button-dark"
+            source="about_page"
           >
             Hubungi via WhatsApp
-          </a>
+          </TrackedWhatsAppLink>
         </div>
 
         <div className="overflow-hidden border-zinc-200 bg-zinc-100">

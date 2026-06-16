@@ -8,6 +8,7 @@ import {
   Truck,
 } from "lucide-react";
 import { FeaturedProductsCarousel } from "@/components/featured-products-carousel";
+import { TrackedWhatsAppLink } from "@/components/tracked-whatsapp-link";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 import { FEATURE_ITEMS, SITE_DESCRIPTION, SITE_IMAGES, SITE_TAGLINE } from "@/lib/site-config";
 import { getFeaturedProducts } from "@/lib/products";
@@ -34,15 +35,16 @@ export default async function HomePage() {
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <a
+              <TrackedWhatsAppLink
                 href={buildWhatsAppLink()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="button-light"
+                source="home_hero"
               >
                 SEWA SEKARANG
                 <ArrowRight className="h-4 w-4" />
-              </a>
+              </TrackedWhatsAppLink>
               <Link
                 href="/products"
                 className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-sm font-semibold text-white hover:bg-white/15"

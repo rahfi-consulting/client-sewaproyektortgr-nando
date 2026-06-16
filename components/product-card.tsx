@@ -1,4 +1,5 @@
 import { MessageCircle } from "lucide-react";
+import { TrackedWhatsAppLink } from "@/components/tracked-whatsapp-link";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 import type { Product } from "@/lib/types";
 
@@ -45,15 +46,17 @@ export function ProductCard({ product }: { product: Product }) {
             <p className="mt-2 text-lg font-semibold text-zinc-950">{product.price}</p>
           </div>
         </div>
-        <a
+        <TrackedWhatsAppLink
           href={buildWhatsAppLink(product.name)}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-6 inline-flex items-center justify-center gap-2 rounded-lg border border-[#25D366] bg-[#25D366] px-4 py-3 text-sm font-semibold text-white"
+          source="product_card"
+          productName={product.name}
         >
           <MessageCircle className="h-4 w-4" />
           WhatsApp
-        </a>
+        </TrackedWhatsAppLink>
       </div>
     </article>
   );
