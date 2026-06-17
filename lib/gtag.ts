@@ -2,9 +2,13 @@ type GoogleTagValue = string | number | boolean | null | undefined;
 type GoogleTagParams = Record<string, GoogleTagValue>;
 
 const FALLBACK_GOOGLE_TAG_ID = "AW-18239175991";
+const FALLBACK_GOOGLE_ADS_CONVERSION_LABEL = "4j86CIC2icAcELf6jvlD";
 
 export const GOOGLE_TAG_ID =
   process.env.NEXT_PUBLIC_GOOGLE_TAG_ID || FALLBACK_GOOGLE_TAG_ID;
+export const GOOGLE_ADS_CONVERSION_LABEL =
+  process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL ||
+  FALLBACK_GOOGLE_ADS_CONVERSION_LABEL;
 
 function getGoogleTag() {
   if (typeof window === "undefined") {
