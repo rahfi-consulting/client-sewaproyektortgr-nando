@@ -17,7 +17,7 @@ const contentSecurityPolicy = [
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
   "frame-src 'self' https://www.googletagmanager.com https://bid.g.doubleclick.net",
-  "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://www.googletagmanager.com https://www.googleadservices.com",
+  "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://www.googletagmanager.com https://www.googleadservices.com https://www.google.com https://ad.doubleclick.net https://googleads.g.doubleclick.net",
   "upgrade-insecure-requests",
 ].join("; ");
 
