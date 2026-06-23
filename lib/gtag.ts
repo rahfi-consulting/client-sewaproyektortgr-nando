@@ -9,6 +9,8 @@ export const GOOGLE_TAG_ID =
 export const GOOGLE_ADS_CONVERSION_LABEL =
   process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL ||
   FALLBACK_GOOGLE_ADS_CONVERSION_LABEL;
+export const GOOGLE_TAG_MANAGER_ID =
+  process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID || "";
 
 function getGoogleTag() {
   if (typeof window === "undefined") {
@@ -16,6 +18,10 @@ function getGoogleTag() {
   }
 
   return window.gtag;
+}
+
+export function hasGoogleTagManager() {
+  return GOOGLE_TAG_MANAGER_ID.length > 0;
 }
 
 export function hasGoogleTag() {

@@ -12,11 +12,12 @@ const contentSecurityPolicy = [
   "form-action 'self'",
   "frame-ancestors 'none'",
   "object-src 'none'",
-  `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ""}`,
+  `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
-  "connect-src 'self' https://*.supabase.co wss://*.supabase.co",
+  "frame-src 'self' https://www.googletagmanager.com https://bid.g.doubleclick.net",
+  "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://www.googletagmanager.com https://www.googleadservices.com",
   "upgrade-insecure-requests",
 ].join("; ");
 
@@ -44,11 +45,11 @@ const securityHeaders = [
   ...(isDevelopment
     ? []
     : [
-        {
-          key: "Strict-Transport-Security",
-          value: "max-age=31536000; includeSubDomains; preload",
-        },
-      ]),
+      {
+        key: "Strict-Transport-Security",
+        value: "max-age=31536000; includeSubDomains; preload",
+      },
+    ]),
 ];
 
 const nextConfig: NextConfig = {
@@ -58,8 +59,8 @@ const nextConfig: NextConfig = {
       bodySizeLimit: "128kb",
       ...(serverActionAllowedOrigins?.length
         ? {
-            allowedOrigins: serverActionAllowedOrigins,
-          }
+          allowedOrigins: serverActionAllowedOrigins,
+        }
         : {}),
     },
   },

@@ -108,8 +108,8 @@ export function ProductCatalog({ products }: { products: Product[] }) {
                         setIsCategoryOpen(false);
                       }}
                       className={`flex w-full items-center justify-between px-4 py-3 text-left text-sm ${isActive
-                          ? "bg-zinc-950 text-white"
-                          : "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950"
+                        ? "bg-zinc-950 text-white"
+                        : "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950"
                         }`}
                       role="option"
                       aria-selected={isActive}

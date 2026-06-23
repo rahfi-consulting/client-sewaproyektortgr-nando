@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { ProductCard } from "@/components/product-card";
 import type { Product } from "@/lib/types";
-import {PHONE_NUMBER} from "@/lib/site-config";
+import { PHONE_NUMBER } from "@/lib/site-config";
 
 export function FeaturedProductsCarousel({ products }: { products: Product[] }) {
   if (products.length === 0) {
