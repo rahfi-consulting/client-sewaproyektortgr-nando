@@ -31,10 +31,13 @@
 The project expects the following environment variables:
 
 ```bash
-NEXT_PUBLIC_SUPABASE_URL= # Supabase URL get it from supabase project
-NEXT_PUBLIC_SUPABASE_ANON_KEY= # Supabase anon key get it from supabase project API settings
-NEXT_PUBLIC_WHATSAPP_NUMBER= # WhatsApp Number
-NEXT_PUBLIC_PHONE_NUMBER= # Phone Number
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-ref.supabase.co # Supabase project URL
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key # Supabase anonymous key
+NEXT_PUBLIC_GOOGLE_TAG_ID=your-google-tag-id # Google Ads conversion tracking ID
+NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID=your-google-tag-manager-id # Google Tag Manager ID
+NEXT_PUBLIC_PHONE_NUMBER=628XXXXXXXXXX # Business phone number
+SERVER_ACTIONS_ALLOWED_ORIGINS= # Allowed origins for server actions (comma-separated)
+
 ```
 
 ### Product Data Notes
