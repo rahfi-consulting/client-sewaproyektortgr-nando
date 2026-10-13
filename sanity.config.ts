@@ -1,7 +1,6 @@
-import { visionTool } from '@sanity/vision'
 import { buildLegacyTheme, defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
-import { apiVersion, dataset, projectId } from './sanity/env'
+import { dataset, projectId } from './sanity/env'
 import { StudioLogo } from './sanity/logo'
 import { schemaTypes } from './sanity/schemas'
 import { structure } from './sanity/structure'
@@ -53,5 +52,11 @@ export default defineConfig({
         ? actions.filter(({ action }) => action !== 'duplicate' && action !== 'delete')
         : actions,
   },
-  plugins: [structureTool({ structure }), visionTool({ defaultApiVersion: apiVersion })],
+  // This project is on Sanity's free plan, so the paid tools are switched off
+  // rather than left in the navigation for an editor to find and be stopped by.
+  // Structure is the one tool the Studio needs.
+  releases: { enabled: false },
+  scheduledDrafts: { enabled: false },
+  scheduledPublishing: { enabled: false },
+  plugins: [structureTool({ structure })],
 })
