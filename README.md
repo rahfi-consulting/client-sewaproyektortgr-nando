@@ -67,19 +67,29 @@ npx sanity cors add https://sewaproyektortgr.com --credentials
 
 ### Moving The Old Catalogue In
 
-The catalogue used to live in Supabase, with product photographs hosted on Cloudinary and a few stock libraries. Two scripts move it across. Both report before they write.
+The catalogue is kept in `scripts/catalog.json`: twenty products with their prices, categories and
+the address each photograph is hosted at today. The import downloads every photograph and uploads
+the file itself into Sanity, so after it runs nothing is served from Cloudinary or any stock host and
+that storage can be emptied.
 
 ```bash
-npm run export:supabase   # writes export/products.json and downloads every image
-npm run import:sanity     # reports what it would create
+npm run import:sanity           # reports what it would create
 APPLY=1 npm run import:sanity   # uploads the images and creates the documents
 ```
 
-`export/` is ignored by git: it holds a copy of the catalogue and its images, not source.
+Document ids are built from the product name, so the old database ids are not carried over, and a
+second run recognises what it already wrote rather than duplicating it. A photograph that cannot be
+fetched leaves its product in place and is reported by name for uploading in Studio.
 
-The import creates a Site Settings document from the values the site used to carry in code and in the environment, including the WhatsApp and phone numbers. It never overwrites a document that already exists, so running it twice is safe.
+The import also creates the Site Settings document from the values the site used to carry in code
+and in the environment, including the WhatsApp and phone numbers. It never overwrites a document
+that already exists.
 
-Once the content is in Sanity and the site is deployed from it, the Supabase project can be paused and deleted from the Supabase dashboard, and the Cloudinary assets are no longer referenced by anything.
+`npm run export:supabase` is how `scripts/catalog.json` was produced, and stays for reference while
+the Supabase project is still alive. Its output in `export/` is ignored by git.
+
+Once the content is in Sanity and the site is deployed from it, the Supabase project can be paused
+and deleted from the Supabase dashboard, and the Cloudinary assets are no longer referenced.
 
 ### Local Development
 

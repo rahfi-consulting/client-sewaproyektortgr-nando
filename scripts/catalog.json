@@ -1,0 +1,202 @@
+[
+  {
+    "name": "Paket 3-4 Jam (Nobar) - Proyektor 5500 Lumens",
+    "description": "Proyektor 5500 Lumens super terang dengan ketajaman maksimal. Sangat ideal untuk kebutuhan nobar bola atau film yang pas di indoor/outdoor (Durasi: 1 - 3 Jam)",
+    "price": "Rp. 450.000 / 3-4 Jam",
+    "image_url": "https://res.cloudinary.com/dkqseejge/image/upload/q_auto/f_auto/v1781335376/Untitled_1200_x_800_px_-_7_vp60zs.png",
+    "status": true,
+    "category": "Proyektor",
+    "featured": true,
+    "sort_order": 1
+  },
+  {
+    "name": "Paket 6 Jam - Proyektor 5500 Lumens",
+    "description": "Proyektor premium super terang dengan ketajaman maksimal. Sangat ideal untuk kebutuhan indoor maupun outdoor, presentasi bisnis di ruangan besar, hingga event formal. (Durasi: 6 Jam)",
+    "price": "Rp. 650.000 / 6 Jam",
+    "image_url": "https://res.cloudinary.com/dkqseejge/image/upload/q_auto/f_auto/v1781335377/Untitled_1200_x_800_px_-_9_jzjepq.png",
+    "status": true,
+    "category": "Proyektor",
+    "featured": true,
+    "sort_order": 2
+  },
+  {
+    "name": "Paket 12 Jam - Proyektor 5500 Lumens",
+    "description": "Proyektor premium super terang dengan ketajaman maksimal. Sangat ideal untuk kebutuhan nobar outdoor, presentasi bisnis di ruangan besar, hingga event formal. (Durasi: 12 Jam)",
+    "price": "Rp. 800.000 / 12 Jam",
+    "image_url": "https://res.cloudinary.com/dkqseejge/image/upload/q_auto/f_auto/v1781335376/Untitled_1200_x_800_px_-_8_agihjh.png",
+    "status": true,
+    "category": "Proyektor",
+    "featured": true,
+    "sort_order": 3
+  },
+  {
+    "name": "Paket 24 Jam - Proyektor 5500 Lumens",
+    "description": "Proyektor premium super terang dengan ketajaman maksimal. Sangat ideal untuk kebutuhan nobar outdoor, presentasi bisnis di ruangan besar, hingga event formal. (Durasi: 24 Jam)",
+    "price": "Rp. 950.000 / 24 Jam",
+    "image_url": "https://res.cloudinary.com/dkqseejge/image/upload/q_auto/f_auto/v1781335377/Untitled_1200_x_800_px_-_10_ymt1bs.png",
+    "status": true,
+    "category": "Proyektor",
+    "featured": true,
+    "sort_order": 4
+  },
+  {
+    "name": "Layar 3x5 meter + Ridging 5x5 meter",
+    "description": "Layar besar sangat cocok untuk nonton bareng / nobar bersama, dengan kapasitas yang besar hingga ratusan orang dan sangat cocok untuk kebutuhan Outdoor.",
+    "price": "Rp. 5.500.000 / 12 Jam",
+    "image_url": "https://res.cloudinary.com/dkqseejge/image/upload/v1788506917/1_gjvsde.jpg",
+    "status": true,
+    "category": "Paket",
+    "featured": true,
+    "sort_order": 5
+  },
+  {
+    "name": "Paket Layar (1,7 x 1,7 m) + Stand - 6 Jam",
+    "description": "Layar proyektor portabel ukuran ringkas lengkap dengan penyangga. Cocok untuk ruangan indoor medium atau rapat skala kecil. (Durasi: 6 Jam)",
+    "price": "Rp. 350.000 / 6 Jam",
+    "image_url": "https://res.cloudinary.com/dkqseejge/image/upload/q_auto/f_auto/v1781335375/Untitled_1200_x_800_px_-_12_nup1ef.png",
+    "status": true,
+    "category": "Layar",
+    "featured": true,
+    "sort_order": 5
+  },
+  {
+    "name": "Paket Layar (2,4 x 2,4 m) + Stand - 6 Jam",
+    "description": "Layar besar dengan tripod kokoh. Pilihan terbaik untuk audiens yang lebih banyak agar visual terlihat jelas dari segala sudut. (Durasi: 6 Jam)",
+    "price": "Rp. 550.000 / 6 Jam",
+    "image_url": "https://res.cloudinary.com/dkqseejge/image/upload/q_auto/f_auto/v1781335375/Untitled_1200_x_800_px_-_4_ytuub8.png",
+    "status": true,
+    "category": "Layar",
+    "featured": true,
+    "sort_order": 6
+  },
+  {
+    "name": "Paket Layar (2 x 3,5 m) + No Stand - 6 Jam",
+    "description": "Kain layar lebar tipe gantung/dinding. Solusi praktis dan hemat tempat untuk konsep panggung atau dekorasi backdrop event. (Durasi: 6 Jam)",
+    "price": "Rp. 250.000 / 6 Jam",
+    "image_url": "https://res.cloudinary.com/dkqseejge/image/upload/layar-2x3.5_aops7k.jpg",
+    "status": true,
+    "category": "Layar",
+    "featured": true,
+    "sort_order": 7
+  },
+  {
+    "name": "Paket Layar (3 x 5 m) + No Stand - 6 Jam",
+    "description": "Layar ukuran raksasa (jumbo) tanpa stand. Sangat direkomendasikan untuk konser, festival, atau acara akbar outdoor dengan ratusan audiens. (Durasi: 6 Jam)",
+    "price": "Rp. 300.000 / 6 Jam",
+    "image_url": "https://res.cloudinary.com/dkqseejge/image/upload/layar-3x5_tyjhbv.jpg",
+    "status": true,
+    "category": "Proyektor",
+    "featured": true,
+    "sort_order": 8
+  },
+  {
+    "name": "Speaker Kecil - 6 Jam",
+    "description": "Pengeras suara ringkas dengan kualitas audio jernih. Cocok untuk pelengkap presentasi di ruang kelas atau rapat kecil. (Durasi: 6 Jam)",
+    "price": "Rp. 150.000 / 6 Jam",
+    "image_url": "https://images.pexels.com/photos/1034651/pexels-photo-1034651.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "status": true,
+    "category": "Speaker & Audio",
+    "featured": true,
+    "sort_order": 9
+  },
+  {
+    "name": "Single Speaker + 2 Mic - 6 Jam",
+    "description": "Paket audio standar (1 speaker + 2 mikrofon). Pas banget untuk acara syukuran, gathering mini, atau presentasi semi-formal. (Durasi: 6 Jam)",
+    "price": "Rp. 450.000 / 6 Jam",
+    "image_url": "https://images.pexels.com/photos/1034651/pexels-photo-1034651.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "status": true,
+    "category": "Speaker & Audio",
+    "featured": true,
+    "sort_order": 10
+  },
+  {
+    "name": "Double Speaker + 2 Mic - 6 Jam",
+    "description": "Sistem suara maksimal (2 speaker + 2 mikrofon). Suara menggelegar dan merata, ideal untuk acara pernikahan, seminar besar, atau nobar ramai-ramai. (Durasi: 6 Jam)",
+    "price": "Rp. 800.000 / 6 Jam",
+    "image_url": "https://images.pexels.com/photos/1034651/pexels-photo-1034651.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "status": true,
+    "category": "Speaker & Audio",
+    "featured": true,
+    "sort_order": 11
+  },
+  {
+    "name": "HT / Walkie Talkie (2 Unit) - 12 Jam",
+    "description": "Alat komunikasi instan bebas pulsa untuk koordinasi panitia. Sinyal kuat dan jernih, pastikan acaramu berjalan sukses tanpa miskomunikasi. (Durasi: 12 Jam)",
+    "price": "Rp. 150.000 / 12 Jam",
+    "image_url": "https://static.vecteezy.com/system/resources/thumbnails/067/807/474/small/black-portable-radio-ht-or-walkie-talkie-in-a-white-background-photo.JPG",
+    "status": true,
+    "category": "Komunikasi",
+    "featured": true,
+    "sort_order": 12
+  },
+  {
+    "name": "Pointer Laser",
+    "description": "Alat navigasi slide presentasi nirkabel dilengkapi laser merah. Bikin gaya presentasimu lebih profesional dan interaktif.",
+    "price": "Rp. 100.000",
+    "image_url": "https://t4.ftcdn.net/jpg/07/77/75/53/360_F_777755383_aj2hY2q9cAy6i4uMGIMGa6GQgw79lIz6.jpg",
+    "status": true,
+    "category": "Perlengkapan Tambahan",
+    "featured": false,
+    "sort_order": 13
+  },
+  {
+    "name": "Wireless Type-C to HDMI",
+    "description": "Hubungkan HP Android, iPad, atau MacBook terbaru ke proyektor secara nirkabel tanpa ribet colok kabel. Praktis dan modern!",
+    "price": "Rp. 150.000",
+    "image_url": "https://res.cloudinary.com/dkqseejge/image/upload/wireless-type-c_sajxhn.jpg",
+    "status": true,
+    "category": "Perlengkapan Tambahan",
+    "featured": false,
+    "sort_order": 14
+  },
+  {
+    "name": "Wireless HDMI/USB",
+    "description": "Transmit video kualitas HD dari laptop ke proyektor tanpa kabel kusut. Memberikan ruang gerak bebas di atas panggung.",
+    "price": "Rp. 250.000",
+    "image_url": "https://res.cloudinary.com/dkqseejge/image/upload/wireless-usb_n9zhor.jpg",
+    "status": true,
+    "category": "Perlengkapan Tambahan",
+    "featured": false,
+    "sort_order": 15
+  },
+  {
+    "name": "Stand Proyektor",
+    "description": "Dudukan proyektor kokoh dan adjustable. Membantu mengatur ketinggian serta sudut tembak proyektor agar visual pas di layar.",
+    "price": "Rp. 100.000",
+    "image_url": "https://res.cloudinary.com/dkqseejge/image/upload/stand-proyektor_mwixp6.jpg",
+    "status": true,
+    "category": "Perlengkapan Tambahan",
+    "featured": false,
+    "sort_order": 16
+  },
+  {
+    "name": "Kabel Roll 10 m - 6 Jam",
+    "description": "Kabel ekstensi daya berkualitas tinggi dan aman. Solusi anti-pusing untuk menjangkau sumber listrik yang jauh dari perangkat acara. (Durasi: 6 Jam)",
+    "price": "Rp. 50.000 / 6 Jam",
+    "image_url": "https://res.cloudinary.com/dkqseejge/image/upload/kabel-rol_ubh7c4.png",
+    "status": true,
+    "category": "Kabel",
+    "featured": false,
+    "sort_order": 17
+  },
+  {
+    "name": "Kabel Roll 20 m - 6 Jam",
+    "description": "Kabel ekstensi daya berkualitas tinggi dan aman. Solusi anti-pusing untuk menjangkau sumber listrik yang jauh dari perangkat acara. (Durasi: 6 Jam)",
+    "price": "Rp. 75.000 / 6 Jam",
+    "image_url": "https://res.cloudinary.com/dkqseejge/image/upload/kabel-rol_ubh7c4.png",
+    "status": true,
+    "category": "Kabel",
+    "featured": false,
+    "sort_order": 18
+  },
+  {
+    "name": "Kabel Roll 30 m - 6 Jam",
+    "description": "Kabel ekstensi daya berkualitas tinggi dan aman. Solusi anti-pusing untuk menjangkau sumber listrik yang jauh dari perangkat acara. (Durasi: 6 Jam)",
+    "price": "Rp. 100.000 / 6 Jam",
+    "image_url": "https://res.cloudinary.com/dkqseejge/image/upload/kabel-rol_ubh7c4.png",
+    "status": true,
+    "category": "Kabel",
+    "featured": false,
+    "sort_order": 19
+  }
+]
