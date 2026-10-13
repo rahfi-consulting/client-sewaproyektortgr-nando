@@ -5,7 +5,7 @@
 [![React](https://img.shields.io/badge/React-19.2.4-61DAFB?logo=react&logoColor=white)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
-[![Supabase](https://img.shields.io/badge/Supabase-2.107.0-3ECF8E?logo=supabase&logoColor=white)](https://supabase.com)
+[![Sanity](https://img.shields.io/badge/Sanity-6.18.0-F03E2F?logo=sanity&logoColor=white)](https://sanity.io)
 [![Swiper](https://img.shields.io/badge/Swiper-12.2.0-6B83E8?logo=swiper&logoColor=white)](https://swiperjs.com)
 
 <div align=center>
@@ -14,84 +14,93 @@
 </div>
 
 ### Overview
+
 <p align=justify>
-    <code>SEWAPROYEKTOR.TGR</code> is a marketing and product catalog website for projector rental services in Tangerang. The site presents company information, a live product catalog, and an admin workflow for managing product listings stored in Supabase.
+    <code>SEWAPROYEKTOR.TGR</code> is a marketing and product catalog website for projector rental services in Tangerang. The site presents company information and a live product catalog. Everything on it, from the logo and the photographs to the phone number and the product list, is edited in Sanity Studio at <code>/studio</code>, so the business can change its own content without a deploy.
 </p>
 
 ### Website Scope
 
 - Public pages: home, products, and about.
-- Product catalog data is loaded from Supabase.
-- Each product is expected to use its own `image_url` from the database.
-- Admin access supports authenticated product management.
+- Content, images and contact details are loaded from Sanity.
+- Editing happens at `/studio`, signed in with the Google account the Sanity project is shared with.
 - WhatsApp is used as the primary contact and conversion channel.
+- One branch: `main`. There is no staging or development branch.
+
+### What Editors Can Change
+
+Everything below is edited in Studio and takes effect within a minute, with no deploy.
+
+| Document | Controls |
+| :- | :- |
+| Site Settings | Both logos, the home and About photographs, business name, tagline, description, selling points, About copy, WhatsApp number, phone number, e-mail, location, Instagram and TikTok handles |
+| Products | Name, photo, price, description, category, featured on the home page, available, order |
+
+The logo has two versions: a dark one for the white header and a light one for the black footer. The Studio uses the same two files and switches between them with its own light and dark mode. The browser tab icon is the dark logo.
 
 ### Environment Variables
 
-The project expects the following environment variables:
-
 ```bash
-NEXT_PUBLIC_SUPABASE_URL=https://your-project-ref.supabase.co # Supabase project URL
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key # Supabase anonymous key
-NEXT_PUBLIC_GOOGLE_TAG_ID=your-google-tag-id # Google Ads conversion tracking ID
+NEXT_PUBLIC_SANITY_PROJECT_ID=your-sanity-project-id   # from sanity.io/manage
+NEXT_PUBLIC_SANITY_DATASET=production                  # dataset name
+NEXT_PUBLIC_GOOGLE_TAG_ID=your-google-tag-id           # Google Ads conversion tracking ID
 NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID=your-google-tag-manager-id # Google Tag Manager ID
-NEXT_PUBLIC_PHONE_NUMBER=628XXXXXXXXXX # Business phone number
-SERVER_ACTIONS_ALLOWED_ORIGINS= # Allowed origins for server actions (comma-separated)
-
+SANITY_WRITE_TOKEN=your-sanity-write-token             # import script only, never deployed
 ```
 
-### Product Data Notes
+The two `NEXT_PUBLIC_SANITY_` values are public by design: the dataset is readable without a key, which is what lets the catalogue render. Writing requires a Sanity login. `SANITY_WRITE_TOKEN` is only used by the import script on a developer machine and does not belong in the hosting environment.
 
-- Product images are not sourced from `SITE_IMAGES`.
-- `SITE_IMAGES` is reserved for the static home and about page assets.
-- Catalog product cards rely on the `image_url` field returned from the database.
-- If a product is missing `image_url`, the UI shows a fallback text state instead of using a site-wide placeholder image.
+### Setting Up Sanity
 
-### Local Development Notes
+```bash
+npm install
+npx sanity login          # choose Google, with the account that owns the project
+npx sanity init --project-plan free   # creates the project, or reuse an existing one
+```
 
-- Use `npm.cmd run dev` in PowerShell if `npm` is blocked by local execution policy.
-- Use `npm.cmd run build` to verify the production build locally before deploying.
-- The duplicate `sewaproyektor.tgr` folder is excluded from TypeScript checks through `tsconfig.json` and is not part of the active app build.
+Put the project id and dataset in `.env`, then register the browser origins that may read the project, or the Studio fails with a CORS error:
+
+```bash
+npx sanity cors add http://localhost:3000 --credentials
+npx sanity cors add https://sewaproyektortgr.com --credentials
+```
+
+### Moving The Old Catalogue In
+
+The catalogue used to live in Supabase, with product photographs hosted on Cloudinary and a few stock libraries. Two scripts move it across. Both report before they write.
+
+```bash
+npm run export:supabase   # writes export/products.json and downloads every image
+npm run import:sanity     # reports what it would create
+APPLY=1 npm run import:sanity   # uploads the images and creates the documents
+```
+
+`export/` is ignored by git: it holds a copy of the catalogue and its images, not source.
+
+The import creates a Site Settings document from the values the site used to carry in code and in the environment, including the WhatsApp and phone numbers. It never overwrites a document that already exists, so running it twice is safe.
+
+Once the content is in Sanity and the site is deployed from it, the Supabase project can be paused and deleted from the Supabase dashboard, and the Cloudinary assets are no longer referenced by anything.
+
+### Local Development
+
+```bash
+npm run dev     # http://localhost:3000, Studio at /studio
+npm run build   # production build, the closest check before deploying
+npx eslint .    # lint
+```
+
+Use `npm.cmd` in PowerShell if `npm` is blocked by the local execution policy.
 
 ### Deployment Notes
 
-- The project is intended to be deployed on Vercel.
-- Confirm all required public environment variables are configured in the Vercel project before running a production deployment.
-- A successful local build is the closest validation for the Vercel build pipeline used by this repository.
+- The project is deployed on Vercel.
+- Set `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET` and the two Google tag ids in the Vercel project before deploying.
+- A successful local build is the closest validation for the Vercel build pipeline.
+- The site is static: pages are prerendered and re-read content from Sanity on a one minute interval, so an edit in Studio appears without a redeploy.
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+### Security Notes
 
-### Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-### Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-### Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- The only credential in the project is `SANITY_WRITE_TOKEN`, used by the import script on a developer machine. The site itself ships no key.
+- `.env` and every variant of it are gitignored; `.env.example` holds placeholders only.
+- Content security policies are set in `next.config.ts`: a strict one for the public site, and a separate one for `/studio`, which is Sanity's own application and talks to their hosts.
+- Every image address rendered by the site is checked to be an https URL on Sanity's CDN before it reaches an `src`.
