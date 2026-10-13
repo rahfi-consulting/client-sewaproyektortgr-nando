@@ -6,16 +6,22 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "export:supabase": "node --env-file=.env scripts/export-supabase.mjs",
+    "import:sanity": "node --env-file=.env scripts/import-sanity.mjs",
+    "studio:deploy": "sanity deploy"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.10.3",
-    "@supabase/supabase-js": "^2.107.0",
+    "@sanity/image-url": "^2.1.1",
+    "@sanity/vision": "^6.18.0",
     "lucide-react": "^1.17.0",
     "next": "16.2.7",
+    "next-sanity": "^13.3.4",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-icons": "^5.6.0",
+    "sanity": "^6.18.0",
+    "styled-components": "^6.6.0",
     "swiper": "^12.2.0"
   },
   "devDependencies": {
