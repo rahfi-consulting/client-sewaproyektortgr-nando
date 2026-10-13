@@ -16,10 +16,10 @@ export default async function AboutPage() {
   const [opening, ...rest] = settings.aboutBody;
 
   const contact = [
-    { label: "Telepon", value: settings.phoneNumber, href: undefined },
-    { label: "Area layanan", value: settings.address, href: undefined },
+    { label: "Phone", value: settings.phoneNumber, href: undefined },
+    { label: "Address", value: settings.address, href: undefined },
     { label: "Instagram", value: `@${settings.instagram}`, href: instagram },
-    { label: "TikTok", value: `@${settings.tiktok}`, href: tiktok },
+    { label: "Tiktok", value: `@${settings.tiktok}`, href: tiktok },
   ].filter((item) => item.value && item.value !== "@");
 
   return (
@@ -27,7 +27,10 @@ export default async function AboutPage() {
       <div className="section-shell">
         <div className="grid gap-12 lg:grid-cols-[1fr_0.9fr] lg:items-start lg:gap-16">
           <div className="space-y-8">
-            <h1 className="display-1">Tentang kami</h1>
+            <div>
+              <span className="text-sm font-semibold text-muted">About Us</span>
+              <h1 className="display-1 mt-3">Tentang Kami</h1>
+            </div>
             <div className="prose-column space-y-5 text-base leading-7 text-muted sm:text-lg">
               <p>
                 <b className="text-ink">{settings.siteName}</b> {opening}
@@ -77,7 +80,7 @@ export default async function AboutPage() {
                         className="inline-flex items-center gap-2 hover:text-muted"
                       >
                         {item.label === "Instagram" ? <FaInstagram className="h-4 w-4" /> : null}
-                        {item.label === "TikTok" ? <FaTiktok className="h-4 w-4" /> : null}
+                        {item.label === "Tiktok" ? <FaTiktok className="h-4 w-4" /> : null}
                         {item.value}
                       </a>
                     ) : (

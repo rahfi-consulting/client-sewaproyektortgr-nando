@@ -1,3 +1,4 @@
+import { MessageCircle } from "lucide-react";
 import { TrackedWhatsAppLink } from "@/components/tracked-whatsapp-link";
 import type { Product } from "@/lib/types";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
@@ -32,26 +33,27 @@ export function ProductCard({ product, siteName, whatsappNumber }: ProductCardPr
             className="h-full w-full object-cover"
           />
         ) : (
-          <p className="flex h-full items-center justify-center px-6 text-center text-sm text-paper/60">
-            Foto menyusul
+          <p className="flex h-full items-center justify-center px-6 text-center text-sm font-medium text-paper/60">
+            Gambar produk belum tersedia.
           </p>
         )}
       </div>
 
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-baseline justify-between gap-3">
-          <p className="text-sm text-muted">{product.category}</p>
-          {!product.status ? (
-            <p className="text-sm font-medium text-muted">Sedang disewa</p>
-          ) : null}
+          <span className="text-sm text-muted">{product.category}</span>
+          <span className={`text-sm font-medium ${product.status ? "text-ink" : "text-muted"}`}>
+            {product.status ? "Tersedia" : "Tidak tersedia"}
+          </span>
         </div>
 
         <h3 className="display-3 mt-3">{product.name}</h3>
         <p className="mt-2 flex-1 text-sm leading-6 text-muted">{product.description}</p>
 
-        <p className="figure mt-5 border-t border-rule pt-4 text-lg font-semibold">
-          {product.price}
-        </p>
+        <div className="mt-5 border-t border-rule pt-4">
+          <p className="text-sm text-muted">Harga</p>
+          <p className="figure mt-1 text-lg font-semibold">{product.price}</p>
+        </div>
 
         {whatsapp ? (
           <TrackedWhatsAppLink
@@ -62,7 +64,8 @@ export function ProductCard({ product, siteName, whatsappNumber }: ProductCardPr
             source="product_card"
             productName={product.name}
           >
-            Tanya ketersediaan
+            <MessageCircle className="h-4 w-4" />
+            WhatsApp
           </TrackedWhatsAppLink>
         ) : null}
       </div>

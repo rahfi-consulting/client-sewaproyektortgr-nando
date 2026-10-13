@@ -35,7 +35,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
         </div>
 
         <div>
-          <p className="text-sm text-paper/50">Halaman</p>
+          <p className="text-sm text-paper/50">Store Links</p>
           <div className="mt-4 flex flex-col gap-3 text-sm">
             {NAV_LINKS.map((link) => (
               <Link key={link.href} href={link.href} className="text-paper/80 hover:text-lamp">
@@ -46,10 +46,9 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
         </div>
 
         <div>
-          <p className="text-sm text-paper/50">Hubungi</p>
+          <p className="text-sm text-paper/50">Contact Information</p>
           <div className="mt-4 space-y-3 text-sm text-paper/80">
-            <p>{settings.address}</p>
-            {settings.phoneNumber ? <p className="figure">{settings.phoneNumber}</p> : null}
+            <p>{settings.address}, Indonesia</p>
             <div className="flex flex-col gap-3 pt-2">
               {social.map(({ label, href, Icon, tracked }) =>
                 tracked ? (
@@ -83,8 +82,8 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
       </div>
 
       <div className="section-shell border-t border-white/10 py-6">
-        <p className="figure text-sm text-paper/50">
-          {new Date().getFullYear()} {settings.siteName}
+        <p className="figure text-center text-sm uppercase tracking-[0.1em] text-paper/50">
+          <b>&copy; {new Date().getFullYear()} {settings.siteName} - All Rights Reserved</b>
         </p>
       </div>
     </footer>

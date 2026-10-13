@@ -138,7 +138,7 @@ export function ProductCatalog({
         <div className="border border-rule p-8 text-center text-sm text-muted">
           {products.length === 0 && !hasActiveFilters
             ? emptyCatalogueHelp
-            : "Tidak ada produk yang cocok. Coba kata lain atau pilih kategori lain."}
+            : "Tidak ada produk yang cocok dengan pencarian Anda."}
         </div>
       ) : (
         <div className="grid gap-px bg-rule sm:grid-cols-2 xl:grid-cols-3">

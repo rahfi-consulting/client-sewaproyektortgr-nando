@@ -32,7 +32,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
           <span className="flex min-w-0 flex-col leading-none">
             <span className="display-3 text-sm sm:text-base">{settings.siteName}</span>
             <span className="mt-1 hidden text-xs text-muted sm:block">
-              Sewa proyektor dan perlengkapan acara
+              Projector Rental
             </span>
           </span>
         </Link>
