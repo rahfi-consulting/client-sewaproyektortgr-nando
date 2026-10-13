@@ -10,13 +10,18 @@ import {
 import { FeaturedProductsCarousel } from "@/components/featured-products-carousel";
 import { TrackedWhatsAppLink } from "@/components/tracked-whatsapp-link";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
-import { FEATURE_ITEMS, SITE_DESCRIPTION, SITE_IMAGES, SITE_TAGLINE } from "@/lib/site-config";
 import { getFeaturedProducts } from "@/lib/products";
+import { getSiteSettings } from "@/lib/site-content";
 
+/** One icon per selling point, in the order they are listed in Studio. */
 const featureIcons = [Truck, Form, ShieldCheck, PhoneCall];
 
 export default async function HomePage() {
-  const featuredProducts = await getFeaturedProducts();
+  const [featuredProducts, settings] = await Promise.all([
+    getFeaturedProducts(),
+    getSiteSettings(),
+  ]);
+  const whatsapp = buildWhatsAppLink(settings.whatsappNumber, settings.siteName);
 
   return (
     <div className="bg-white">
@@ -28,23 +33,25 @@ export default async function HomePage() {
             </span>
             <div className="space-y-4">
               <h1 className="max-w-2xl text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
-                {SITE_TAGLINE}
+                {settings.tagline}
               </h1>
               <p className="max-w-xl text-base leading-7 text-zinc-300 sm:text-lg">
-                {SITE_DESCRIPTION}
+                {settings.description}
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <TrackedWhatsAppLink
-                href={buildWhatsAppLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="button-light"
-                source="home_hero"
-              >
-                SEWA SEKARANG
-                <ArrowRight className="h-4 w-4" />
-              </TrackedWhatsAppLink>
+              {whatsapp ? (
+                <TrackedWhatsAppLink
+                  href={whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="button-light"
+                  source="home_hero"
+                >
+                  SEWA SEKARANG
+                  <ArrowRight className="h-4 w-4" />
+                </TrackedWhatsAppLink>
+              ) : null}
               <Link
                 href="/products"
                 className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-sm font-semibold text-white hover:bg-white/15"
@@ -57,7 +64,7 @@ export default async function HomePage() {
             <div className="relative overflow-hidden rounded-lg border border-white/10 bg-zinc-950">
               <div className="absolute inset-0 bg-gradient-to-tr from-black via-black/50 to-transparent" />
               <Image
-                src={SITE_IMAGES.hero}
+                src={settings.heroImage}
                 alt="Projector setup for event presentation"
                 width={1200}
                 height={900}
@@ -71,8 +78,8 @@ export default async function HomePage() {
 
       <section className="bg-zinc-950 text-white">
         <div className="section-shell grid gap-4 py-6 sm:grid-cols-2 lg:grid-cols-4">
-          {FEATURE_ITEMS.map((item, index) => {
-            const Icon = featureIcons[index];
+          {settings.features.map((item, index) => {
+            const Icon = featureIcons[index % featureIcons.length];
 
             return (
               <div
@@ -124,7 +131,12 @@ export default async function HomePage() {
             </Link>
           </div>
           <div className="mt-10">
-            <FeaturedProductsCarousel products={featuredProducts} />
+            <FeaturedProductsCarousel
+              products={featuredProducts}
+              siteName={settings.siteName}
+              whatsappNumber={settings.whatsappNumber}
+              phoneNumber={settings.phoneNumber}
+            />
           </div>
         </div>
       </section>

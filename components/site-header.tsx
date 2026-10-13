@@ -5,9 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { NAV_LINKS, SITE_NAME } from "@/lib/site-config";
+import { NAV_LINKS } from "@/lib/site-config";
+import type { SiteSettings } from "@/lib/types";
 
-export function SiteHeader() {
+/** The header sits on white, so it takes the dark version of the logo. */
+export function SiteHeader({ settings }: { settings: SiteSettings }) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -16,16 +18,17 @@ export function SiteHeader() {
       <div className="section-shell flex h-20 items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-3">
           <Image
-            src="/dark-logo.png"
-            alt={SITE_NAME}
+            src={settings.darkLogo}
+            alt={settings.siteName}
             width={120}
             height={50}
             className="h-10 w-auto"
             priority
+            unoptimized
           />
           <span className="min-w-0 flex flex-col leading-none">
             <span className="text-xs font-bold uppercase text-zinc-950 sm:text-sm font-bold">
-              {SITE_NAME}
+              {settings.siteName}
             </span>
             <span className="text-xs font-medium text-zinc-500 sm:block">
               Projector Rental

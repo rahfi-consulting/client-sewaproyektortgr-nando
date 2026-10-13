@@ -5,13 +5,25 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { ProductCard } from "@/components/product-card";
 import type { Product } from "@/lib/types";
-import { PHONE_NUMBER } from "@/lib/site-config";
 
-export function FeaturedProductsCarousel({ products }: { products: Product[] }) {
+type FeaturedProductsCarouselProps = {
+  products: Product[];
+  siteName: string;
+  whatsappNumber: string;
+  phoneNumber: string;
+};
+
+export function FeaturedProductsCarousel({
+  products,
+  siteName,
+  whatsappNumber,
+  phoneNumber,
+}: FeaturedProductsCarouselProps) {
   if (products.length === 0) {
     return (
       <div className="rounded-lg border border-dashed border-zinc-200 bg-zinc-50 p-8 text-center text-sm text-zinc-500">
-        Produk unggulan belum tersedia, Silahkan cek kembali nanti atau hubungi Admin: {PHONE_NUMBER}
+        Produk unggulan belum tersedia, Silahkan cek kembali nanti
+        {phoneNumber ? ` atau hubungi Admin: ${phoneNumber}` : ""}.
       </div>
     );
   }
@@ -45,7 +57,11 @@ export function FeaturedProductsCarousel({ products }: { products: Product[] }) 
       {products.map((product) => (
         <SwiperSlide key={product.id} className="h-auto">
           <div className="h-full">
-            <ProductCard product={product} />
+            <ProductCard
+              product={product}
+              siteName={siteName}
+              whatsappNumber={whatsappNumber}
+            />
           </div>
         </SwiperSlide>
       ))}

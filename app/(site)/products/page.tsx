@@ -1,8 +1,9 @@
 import { ProductCatalog } from "@/components/product-catalog";
 import { getProducts } from "@/lib/products";
+import { getSiteSettings } from "@/lib/site-content";
 
 export default async function ProductsPage() {
-  const products = await getProducts();
+  const [products, settings] = await Promise.all([getProducts(), getSiteSettings()]);
 
   return (
     <div className="bg-white py-16 sm:py-20">
@@ -21,7 +22,12 @@ export default async function ProductsPage() {
         </div>
 
         <div className="mt-10">
-          <ProductCatalog products={products} />
+          <ProductCatalog
+            products={products}
+            siteName={settings.siteName}
+            whatsappNumber={settings.whatsappNumber}
+            phoneNumber={settings.phoneNumber}
+          />
         </div>
       </div>
     </div>

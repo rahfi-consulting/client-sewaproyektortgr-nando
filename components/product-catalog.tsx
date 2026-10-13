@@ -4,9 +4,20 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Check, ChevronDown, Search } from "lucide-react";
 import { ProductCard } from "@/components/product-card";
 import type { Product } from "@/lib/types";
-import { PHONE_NUMBER } from "@/lib/site-config";
 
-export function ProductCatalog({ products }: { products: Product[] }) {
+type ProductCatalogProps = {
+  products: Product[];
+  siteName: string;
+  whatsappNumber: string;
+  phoneNumber: string;
+};
+
+export function ProductCatalog({
+  products,
+  siteName,
+  whatsappNumber,
+  phoneNumber,
+}: ProductCatalogProps) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("all");
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
@@ -58,6 +69,9 @@ export function ProductCatalog({ products }: { products: Product[] }) {
   }, [category, products, query]);
 
   const hasActiveFilters = query.trim().length > 0 || category !== "all";
+  const emptyCatalogueHelp = phoneNumber
+    ? `Katalog produk masih kosong. Silahkan cek kembali nanti atau hubungi Admin: ${phoneNumber}`
+    : "Katalog produk masih kosong. Silahkan cek kembali nanti.";
 
   return (
     <div className="space-y-8">
@@ -128,13 +142,18 @@ export function ProductCatalog({ products }: { products: Product[] }) {
       {filteredProducts.length === 0 ? (
         <div className="rounded-lg border border-dashed border-zinc-300 bg-zinc-50 p-8 text-center text-sm text-zinc-500">
           {products.length === 0 && !hasActiveFilters
-            ? `Katalog produk masih kosong. SIlahkan cek kembali nanti atau hubungi Admin: ${PHONE_NUMBER}`
+            ? emptyCatalogueHelp
             : "Tidak ada produk yang cocok dengan pencarian Anda."}
         </div>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
           {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              siteName={siteName}
+              whatsappNumber={whatsappNumber}
+            />
           ))}
         </div>
       )}

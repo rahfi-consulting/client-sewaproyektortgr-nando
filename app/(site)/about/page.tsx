@@ -1,10 +1,16 @@
 import Image from "next/image";
 import { FaInstagram, FaTiktok } from "react-icons/fa";
 import { TrackedWhatsAppLink } from "@/components/tracked-whatsapp-link";
-import { CONTACT_ADDRESS, PHONE_NUMBER, SITE_IMAGES, SITE_NAME } from "@/lib/site-config";
+import { getSiteSettings, instagramUrl, tiktokUrl } from "@/lib/site-content";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const settings = await getSiteSettings();
+  const whatsapp = buildWhatsAppLink(settings.whatsappNumber, settings.siteName);
+  const instagram = instagramUrl(settings.instagram);
+  const tiktok = tiktokUrl(settings.tiktok);
+  const [opening, ...rest] = settings.aboutBody;
+
   return (
     <div className="bg-white py-16 sm:py-20">
       <div className="section-shell grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-center">
@@ -19,80 +25,83 @@ export default function AboutPage() {
           </div>
 
           <div className="space-y-5 text-base leading-7 text-zinc-600 sm:text-lg">
+            {/* The opening paragraph carries the business name, so it is set in
+                bold ahead of the copy written in Studio. */}
             <p>
-              <b>{SITE_NAME}</b> berfokus pada layanan sewa proyektor dan perlengkapan
-              event yang rapi, cepat, dan mudah dikoordinasikan. Kami melayani
-              kebutuhan presentasi kantor, seminar, nobar, ibadah, hingga event
-              komunitas di area Tangerang dan sekitarnya.
+              <b>{settings.siteName}</b> {opening}
             </p>
-            <p>
-              Misi kami sederhana: membantu klien menjalankan acara tanpa hambatan
-              teknis. Itu berarti harga jelas, pilihan perlengkapan relevan,
-              komunikasi responsif, dan setup yang stabil sejak awal.
-            </p>
-            <p>
-              Kami menjaga setiap penyewaan tetap praktis, dari konsultasi alat,
-              pengantaran, hingga pengambilan kembali setelah acara selesai.
-            </p>
+            {rest.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
 
           <div className="grid gap-4 border-zinc-200 bg-zinc-50 p-6 sm:grid-cols-2">
-            <div>
-              <p className="text-sm tracking-[0.1em] text-zinc-500">
-                Phone
-              </p>
-              <p className="mt-2 font-medium text-zinc-950">{PHONE_NUMBER}</p>
-            </div>
-            <div>
-              <p className="text-sm tracking-[0.1em] text-zinc-500">
-                Address
-              </p>
-              <p className="mt-2 font-medium text-zinc-950">{CONTACT_ADDRESS}</p>
-            </div>
-            <div>
-              <p className="text-sm tracking-[0.1em] text-zinc-500">
-                Instagram
-              </p>
-              <a
-                href="https://instagram.com/sewaproyektor.tgr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 mt-2 text-zinc-950"
-              >
-                <FaInstagram className="h-5 w-5" />
-                <span className="text-sm font-medium">@sewaproyektor.tgr</span>
-              </a>
-            </div>
-            <div>
-              <p className="text-sm tracking-[0.1em] text-zinc-500">
-                Tiktok
-              </p>
-              <a
-                href="https://tiktok.com/@sewaproyektor.tgr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 mt-2 text-zinc-950"
-              >
-                <FaTiktok className="h-5 w-5" />
-                <span className="text-sm font-medium">@sewaproyektor.tgr</span>
-              </a>
-            </div>
+            {settings.phoneNumber ? (
+              <div>
+                <p className="text-sm tracking-[0.1em] text-zinc-500">
+                  Phone
+                </p>
+                <p className="mt-2 font-medium text-zinc-950">{settings.phoneNumber}</p>
+              </div>
+            ) : null}
+            {settings.address ? (
+              <div>
+                <p className="text-sm tracking-[0.1em] text-zinc-500">
+                  Address
+                </p>
+                <p className="mt-2 font-medium text-zinc-950">{settings.address}</p>
+              </div>
+            ) : null}
+            {instagram ? (
+              <div>
+                <p className="text-sm tracking-[0.1em] text-zinc-500">
+                  Instagram
+                </p>
+                <a
+                  href={instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 mt-2 text-zinc-950"
+                >
+                  <FaInstagram className="h-5 w-5" />
+                  <span className="text-sm font-medium">@{settings.instagram}</span>
+                </a>
+              </div>
+            ) : null}
+            {tiktok ? (
+              <div>
+                <p className="text-sm tracking-[0.1em] text-zinc-500">
+                  Tiktok
+                </p>
+                <a
+                  href={tiktok}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 mt-2 text-zinc-950"
+                >
+                  <FaTiktok className="h-5 w-5" />
+                  <span className="text-sm font-medium">@{settings.tiktok}</span>
+                </a>
+              </div>
+            ) : null}
           </div>
 
-          <TrackedWhatsAppLink
-            href={buildWhatsAppLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="button-dark"
-            source="about_page"
-          >
-            Hubungi via WhatsApp
-          </TrackedWhatsAppLink>
+          {whatsapp ? (
+            <TrackedWhatsAppLink
+              href={whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button-dark"
+              source="about_page"
+            >
+              Hubungi via WhatsApp
+            </TrackedWhatsAppLink>
+          ) : null}
         </div>
 
         <div className="overflow-hidden border-zinc-200 bg-zinc-100">
           <Image
-            src={SITE_IMAGES.about}
+            src={settings.aboutImage}
             alt="Team discussion and planning session"
             width={1200}
             height={900}

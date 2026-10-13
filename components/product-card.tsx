@@ -1,15 +1,24 @@
 import { MessageCircle } from "lucide-react";
 import { TrackedWhatsAppLink } from "@/components/tracked-whatsapp-link";
-import { buildWhatsAppLink } from "@/lib/whatsapp";
 import type { Product } from "@/lib/types";
+import { buildWhatsAppLink } from "@/lib/whatsapp";
 
-export function ProductCard({ product }: { product: Product }) {
+type ProductCardProps = {
+  product: Product;
+  /** Passed down rather than read here: the number lives in Sanity, not in the client. */
+  siteName: string;
+  whatsappNumber: string;
+};
+
+export function ProductCard({ product, siteName, whatsappNumber }: ProductCardProps) {
+  const whatsapp = buildWhatsAppLink(whatsappNumber, siteName, product.name);
+
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-lg border border-zinc-200 bg-white">
       <div className="relative aspect-[4/3] overflow-hidden bg-zinc-100">
         {product.imageUrl ? (
           <>
-            {/* Product URLs are admin-managed and may come from multiple external hosts. */}
+            {/* Served straight from Sanity's image CDN at the size the card needs. */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={product.imageUrl}
@@ -46,17 +55,19 @@ export function ProductCard({ product }: { product: Product }) {
             <p className="mt-2 text-lg font-semibold text-zinc-950">{product.price}</p>
           </div>
         </div>
-        <TrackedWhatsAppLink
-          href={buildWhatsAppLink(product.name)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-6 inline-flex items-center justify-center gap-2 rounded-lg border border-[#25D366] bg-[#25D366] px-4 py-3 text-sm font-semibold text-white"
-          source="product_card"
-          productName={product.name}
-        >
-          <MessageCircle className="h-4 w-4" />
-          WhatsApp
-        </TrackedWhatsAppLink>
+        {whatsapp ? (
+          <TrackedWhatsAppLink
+            href={whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center justify-center gap-2 rounded-lg border border-[#25D366] bg-[#25D366] px-4 py-3 text-sm font-semibold text-white"
+            source="product_card"
+            productName={product.name}
+          >
+            <MessageCircle className="h-4 w-4" />
+            WhatsApp
+          </TrackedWhatsAppLink>
+        ) : null}
       </div>
     </article>
   );
