@@ -21,7 +21,7 @@ export function FeaturedProductsCarousel({
 }: FeaturedProductsCarouselProps) {
   if (products.length === 0) {
     return (
-      <div className="rounded-lg border border-dashed border-zinc-200 bg-zinc-50 p-8 text-center text-sm text-zinc-500">
+      <div className="border border-rule bg-paper p-8 text-center text-sm text-muted">
         Produk unggulan belum tersedia, Silahkan cek kembali nanti
         {phoneNumber ? ` atau hubungi Admin: ${phoneNumber}` : ""}.
       </div>

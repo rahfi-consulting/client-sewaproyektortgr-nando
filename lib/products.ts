@@ -29,22 +29,3 @@ export async function getProducts(): Promise<Product[]> {
   const records = await sanityFetch<ProductRecord[]>(PRODUCTS_QUERY, []);
   return records.map(normalizeProduct);
 }
-
-/**
- * Six products for the home page carousel: the ones marked featured first, then
- * the rest of the catalogue to fill the row, so the carousel is never half empty.
- */
-export async function getFeaturedProducts(): Promise<Product[]> {
-  const products = await getProducts();
-  const featured = products.filter((product) => product.featured).slice(0, 6);
-
-  if (featured.length === 6) {
-    return featured;
-  }
-
-  const fallback = products.filter(
-    (product) => !featured.some((item) => item.id === product.id),
-  );
-
-  return [...featured, ...fallback].slice(0, 6);
-}

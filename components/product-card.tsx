@@ -1,4 +1,3 @@
-import { MessageCircle } from "lucide-react";
 import { TrackedWhatsAppLink } from "@/components/tracked-whatsapp-link";
 import type { Product } from "@/lib/types";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
@@ -10,62 +9,60 @@ type ProductCardProps = {
   whatsappNumber: string;
 };
 
+/**
+ * One item of gear.
+ *
+ * The photograph sits in a 4:3 screen, the ratio the equipment projects, and the
+ * card itself is a hairline rectangle rather than a floating panel: the only
+ * thing that glows on this site is the lamp.
+ */
 export function ProductCard({ product, siteName, whatsappNumber }: ProductCardProps) {
   const whatsapp = buildWhatsAppLink(whatsappNumber, siteName, product.name);
 
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-lg border border-zinc-200 bg-white">
-      <div className="relative aspect-[4/3] overflow-hidden bg-zinc-100">
+    <article className="flex h-full flex-col border border-rule bg-paper">
+      <div className="screen screen-standard border-0 border-b border-rule">
         {product.imageUrl ? (
-          <>
-            {/* Served straight from Sanity's image CDN at the size the card needs. */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={product.imageUrl}
-              alt={product.name}
-              loading="lazy"
-              className="h-full w-full object-cover"
-            />
-          </>
+          // Served straight from Sanity's image CDN at the size the card needs.
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={product.imageUrl}
+            alt={product.name}
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
         ) : (
-          <div className="flex h-full items-center justify-center px-6 text-center text-sm font-medium text-zinc-500">
-            Gambar produk belum tersedia.
-          </div>
+          <p className="flex h-full items-center justify-center px-6 text-center text-sm text-paper/60">
+            Foto menyusul
+          </p>
         )}
       </div>
-      <div className="flex h-full flex-col p-5">
-        <div className="flex items-center justify-between gap-3">
-          <span className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-semibold text-zinc-500">
-            {product.category}
-          </span>
-          <span
-            className={`text-xs font-semibold ${product.status ? "text-emerald-600" : "text-rose-600"
-              }`}
-          >
-            {product.status ? "Tersedia" : "Tidak tersedia"}
-          </span>
+
+      <div className="flex flex-1 flex-col p-5">
+        <div className="flex items-baseline justify-between gap-3">
+          <p className="text-sm text-muted">{product.category}</p>
+          {!product.status ? (
+            <p className="text-sm font-medium text-muted">Sedang disewa</p>
+          ) : null}
         </div>
-        <div className="mt-4 flex-1 space-y-3">
-          <h3 className="text-xl font-semibold text-zinc-950">{product.name}</h3>
-          <p className="text-sm leading-6 text-zinc-600">{product.description}</p>
-        </div>
-        <div className="mt-6 flex items-end justify-between gap-4">
-          <div>
-            <p className="text-xs tracking-[0.1em] text-zinc-500">Harga</p>
-            <p className="mt-2 text-lg font-semibold text-zinc-950">{product.price}</p>
-          </div>
-        </div>
+
+        <h3 className="display-3 mt-3">{product.name}</h3>
+        <p className="mt-2 flex-1 text-sm leading-6 text-muted">{product.description}</p>
+
+        <p className="figure mt-5 border-t border-rule pt-4 text-lg font-semibold">
+          {product.price}
+        </p>
+
         {whatsapp ? (
           <TrackedWhatsAppLink
             href={whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center justify-center gap-2 rounded-lg border border-[#25D366] bg-[#25D366] px-4 py-3 text-sm font-semibold text-white"
+            className="btn btn-ink mt-4"
             source="product_card"
             productName={product.name}
           >
-            <MessageCircle className="h-4 w-4" />
-            WhatsApp
+            Tanya ketersediaan
           </TrackedWhatsAppLink>
         ) : null}
       </div>

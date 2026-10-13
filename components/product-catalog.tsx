@@ -75,39 +75,37 @@ export function ProductCatalog({
 
   return (
     <div className="space-y-8">
-      <div className="grid gap-4 rounded-2xl border border-zinc-200 bg-zinc-50 p-4 shadow-[0_18px_50px_rgba(17,17,17,0.05)] md:grid-cols-[1fr_240px]">
+      <div className="grid gap-4 border border-rule p-4 md:grid-cols-[1fr_240px]">
         <label className="relative block">
-          <span className="pointer-events-none absolute left-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-lg bg-zinc-100 text-zinc-500">
+          <span className="pointer-events-none absolute left-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center text-muted">
             <Search className="h-4 w-4" />
           </span>
           <input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Cari produk..."
-            className="field-base min-h-14 rounded-xl !pl-14 pr-4 placeholder:text-zinc-400"
+            className="field-base min-h-14 !pl-12 pr-4"
           />
         </label>
         <div className="relative" ref={categoryMenuRef}>
           <button
             type="button"
             onClick={() => setIsCategoryOpen((open) => !open)}
-            className={`field-base flex min-h-14 items-center justify-between rounded-xl pr-4 text-left ${isCategoryOpen ? "border-zinc-950 shadow-[0_0_0_3px_rgba(17,17,17,0.08)]" : ""
+            className={`field-base flex min-h-14 items-center justify-between pr-4 text-left ${isCategoryOpen ? "border-ink" : ""
               }`}
             aria-haspopup="listbox"
             aria-expanded={isCategoryOpen}
           >
-            <span className="truncate text-[0.95rem] text-zinc-950">{categoryLabel}</span>
+            <span className="truncate text-[0.95rem]">{categoryLabel}</span>
             <ChevronDown
-              className={`h-4 w-4 shrink-0 text-zinc-400 transition-transform ${isCategoryOpen ? "rotate-180" : ""
+              className={`h-4 w-4 shrink-0 text-muted transition-transform ${isCategoryOpen ? "rotate-180" : ""
                 }`}
             />
           </button>
 
           {isCategoryOpen ? (
-            <div className="absolute inset-x-0 top-[calc(100%+0.5rem)] z-20 overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-[0_24px_60px_rgba(17,17,17,0.14)]">
-              <div className="border-b border-zinc-100 px-4 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-zinc-500">
-                Pilih kategori
-              </div>
+            <div className="absolute inset-x-0 top-[calc(100%+0.5rem)] z-20 overflow-hidden border border-ink bg-paper">
+              <div className="border-b border-rule px-4 py-3 text-sm text-muted">Pilih kategori</div>
               <div className="max-h-72 overflow-y-auto py-2" role="listbox" aria-label="Pilih kategori produk">
                 {["all", ...categories].map((item) => {
                   const isActive = item === category;
@@ -121,10 +119,7 @@ export function ProductCatalog({
                         setCategory(item);
                         setIsCategoryOpen(false);
                       }}
-                      className={`flex w-full items-center justify-between px-4 py-3 text-left text-sm ${isActive
-                        ? "bg-zinc-950 text-white"
-                        : "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950"
-                        }`}
+                      className={`flex w-full items-center justify-between px-4 py-3 text-left text-sm ${isActive ? "bg-ink text-paper" : "text-muted hover:bg-lamp-soft hover:text-ink"}`}
                       role="option"
                       aria-selected={isActive}
                     >
@@ -140,13 +135,13 @@ export function ProductCatalog({
       </div>
 
       {filteredProducts.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-zinc-300 bg-zinc-50 p-8 text-center text-sm text-zinc-500">
+        <div className="border border-rule p-8 text-center text-sm text-muted">
           {products.length === 0 && !hasActiveFilters
             ? emptyCatalogueHelp
-            : "Tidak ada produk yang cocok dengan pencarian Anda."}
+            : "Tidak ada produk yang cocok. Coba kata lain atau pilih kategori lain."}
         </div>
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+        <div className="grid gap-px bg-rule sm:grid-cols-2 xl:grid-cols-3">
           {filteredProducts.map((product) => (
             <ProductCard
               key={product.id}

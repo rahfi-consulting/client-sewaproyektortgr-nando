@@ -1,20 +1,35 @@
 @import "tailwindcss";
 
+/*
+  SEWAPROYEKTOR.TGR
+
+  The business sells light in a dark room, so the page is built from that: the
+  surface is paper white, the darkness is kept inside the screens, and the one
+  warm colour is lamp light. Nothing else is coloured.
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #111111;
-  --muted: #f4f4f5;
-  --muted-foreground: #52525b;
-  --border: #e4e4e7;
+  --paper: #ffffff;
+  --ink: #000000;
+  --lamp: #ffc74a;
+  --lamp-soft: #fff1cf;
+  --rule: #e3e3e0;
+  --muted: #6b6b68;
+  --screen: #0a0a0a;
+
+  --shell: 84rem;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-lamp: var(--lamp);
+  --color-lamp-soft: var(--lamp-soft);
+  --color-rule: var(--rule);
   --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-border: var(--border);
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --color-screen: var(--screen);
+  --font-sans: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
 }
 
 * {
@@ -26,9 +41,21 @@ html {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+::selection {
+  background: var(--lamp);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
 }
 
 a,
@@ -37,123 +64,241 @@ input,
 select,
 textarea {
   transition:
-    color 0.2s ease,
-    border-color 0.2s ease,
-    background-color 0.2s ease,
-    opacity 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
+    color 0.18s ease,
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    opacity 0.18s ease;
 }
 
-::selection {
-  background: #111111;
-  color: #ffffff;
+/* Type
+   Archivo carries the headlines, stretched wide: a projector throws a wide
+   rectangle, and the headline is set to the same proportion. IBM Plex Sans
+   carries everything that has to be read rather than seen. */
+.display-1 {
+  font-family: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(1.95rem, 4.4vw, 3.75rem);
+  font-weight: 600;
+  font-stretch: 112%;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.display-2 {
+  font-family: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(1.9rem, 3.4vw, 2.85rem);
+  font-weight: 600;
+  font-stretch: 108%;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.display-3 {
+  font-family: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  font-stretch: 105%;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+/* Prices, durations and lumens all line up in columns, so every figure on the
+   site is set on the same width. */
+.figure {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.lede {
+  max-width: 34rem;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.prose-column {
+  max-width: 62ch;
 }
 
 .section-shell {
   width: 100%;
-  max-width: 80rem;
+  max-width: var(--shell);
   margin-inline: auto;
-  padding-inline: 1rem;
+  padding-inline: var(--gutter);
+}
+
+/* The screen
+   Every photograph on the site is shown as a projection: a dark surface inside a
+   thin black frame, in the ratio the equipment actually throws. */
+.screen {
+  position: relative;
+  overflow: hidden;
+  background: var(--screen);
+  border: 1px solid var(--ink);
+}
+
+.screen-wide {
+  aspect-ratio: 16 / 9;
+}
+
+.screen-standard {
+  aspect-ratio: 4 / 3;
+}
+
+.screen img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Rate board
+   Durations and prices belong in rows that line up, the way a rental counter
+   writes them, not in a row of identical cards. */
+.rate-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem 1.5rem;
+  align-items: baseline;
+  padding-block: 1.1rem;
+  border-top: 1px solid var(--rule);
+}
+
+.rate-row:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+@media (min-width: 48rem) {
+  .rate-row {
+    grid-template-columns: 7rem minmax(0, 1fr) auto auto;
+    align-items: center;
+  }
+}
+
+/* Controls */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.75rem 1.35rem;
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: -0.005em;
+}
+
+.btn-lamp {
+  background: var(--lamp);
+  color: var(--ink);
+}
+
+.btn-lamp:hover {
+  background: var(--ink);
+  color: var(--lamp);
+}
+
+.btn-ink {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn-ink:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--ink);
+}
+
+.btn-outline:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* On the black hero the outline has to be light to be seen at all. */
+.btn-outline-light {
+  background: transparent;
+  color: var(--paper);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.btn-outline-light:hover {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
 }
 
 .field-base {
   width: 100%;
-  border-radius: 0.5rem;
-  border: 1px solid var(--border);
-  background: #ffffff;
-  padding: 0.875rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: var(--paper);
+  padding: 0.9rem 1rem;
   font-size: 0.95rem;
   line-height: 1.4;
-  color: #111111;
+  color: var(--ink);
 }
 
 .field-base::placeholder {
-  color: #71717a;
+  color: var(--muted);
 }
 
 .field-base:focus {
   outline: none;
-  border-color: #111111;
-  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.08);
+  border-color: var(--ink);
+  box-shadow: inset 0 -2px 0 0 var(--lamp);
 }
 
-.checkbox-base {
-  height: 1rem;
-  width: 1rem;
-  accent-color: #111111;
+/* The lamp warming up: the one piece of motion on the site, played once when the
+   hero arrives. Everything else moves only in answer to a click. */
+@keyframes lamp-on {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.button-dark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: 0.5rem;
-  border: 1px solid #111111;
-  background: #111111;
-  color: #ffffff;
-  padding: 0.85rem 1.1rem;
-  font-weight: 600;
+.lamp-on {
+  animation: lamp-on 900ms ease-out both;
 }
 
-.button-dark:hover {
-  background: #27272a;
-  border-color: #27272a;
-}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 
-.button-light {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: 0.5rem;
-  border: 1px solid #111111;
-  background: #ffffff;
-  color: #111111;
-  padding: 0.85rem 1.1rem;
-  font-weight: 600;
-}
+  .lamp-on {
+    animation: none;
+  }
 
-.button-light:hover {
-  background: #f4f4f5;
-}
-
-.button-danger {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: 0.5rem;
-  border: 1px solid #dc2626;
-  background: #ffffff;
-  color: #dc2626;
-  padding: 0.85rem 1.1rem;
-  font-weight: 600;
-}
-
-.button-danger:hover {
-  background: #fef2f2;
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Hide scrollbars for all browsers */
 html,
 body {
   -ms-overflow-style: none;
-  /* IE and Edge */
   scrollbar-width: none;
-  /* Firefox */
   overflow-y: scroll;
-  /* Keep scrolling functionality */
 }
 
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   display: none;
-  /* Chrome, Safari and Opera */
 }
 
-/* Hide scrollbars for all elements */
 * {
   scrollbar-width: none;
   -ms-overflow-style: none;
