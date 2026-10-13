@@ -30,8 +30,10 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
             unoptimized
           />
           <span className="flex min-w-0 flex-col leading-none">
-            <span className="display-3 text-sm sm:text-base">{settings.siteName}</span>
-            <span className="mt-1 hidden text-xs text-muted sm:block">
+            <span className="font-display text-xs font-semibold leading-none tracking-tight sm:text-sm">
+              {settings.siteName}
+            </span>
+            <span className="mt-0.5 hidden text-[0.6875rem] leading-none text-muted sm:block">
               Projector Rental
             </span>
           </span>
